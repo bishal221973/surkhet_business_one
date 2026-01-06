@@ -87,6 +87,12 @@
                          <p>Settings</p>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a href="{{ route('client.index') }}" class="nav-link">
+                         <i class="nav-icon fa fa-users"></i>
+                         <p>Clients</p>
+                     </a>
+                 </li>
              </ul>
              <!--end::Sidebar Menu-->
          </nav>

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('page-title', 'Email Setting')
+@section('page-title', 'Fiscalyear Setting')
 
 @section('breadcrumb')
     <li class="breadcrumb-item active" aria-current="page">Settings</li>
-    <li class="breadcrumb-item active" aria-current="page">Email Setting</li>
+    <li class="breadcrumb-item active" aria-current="page">Fiscalyear Setting</li>
 @endsection
 
 @section('content')

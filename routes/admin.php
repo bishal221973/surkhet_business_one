@@ -51,3 +51,12 @@ Route::prefix('human-resource')->group(function () {
 
     });
 });
+
+
+Route::prefix('clients')->group(function () {
+    Route::get('/', [App\Http\Controllers\ClientController::class, 'index'])->name('client.index');
+    Route::post('store', [App\Http\Controllers\ClientController::class, 'store'])->name('client.store');
+    Route::get('edit/{id}', [App\Http\Controllers\ClientController::class, 'edit'])->name('client.edit');
+    Route::put('update/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
+    Route::delete('destroy/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('client.destroy');
+});
