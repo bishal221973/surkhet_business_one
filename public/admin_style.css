@@ -147,3 +147,15 @@
 label,span{
     /* font-size: 14px; */
 }
+.form-table thead{
+    background-color: #005A9C30;
+}
+.form-table thead tr th{
+    text-align: left !important;
+    padding: 10px 25px !important;
+    font-size: 12px !important;
+}
+.form-table tfoot tr td{
+    padding: 10px 25px !important;
+    border: 1px solid #cccccc46;
+}

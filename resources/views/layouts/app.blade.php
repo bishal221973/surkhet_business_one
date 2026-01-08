@@ -276,7 +276,7 @@
             @endif
         });
     </script>
-    @stack('scripts')
+
     <script src="{{ asset('nepaliDatepicker/nepali.datepicker.v5.0.6.min.js') }}"></script>
     <script type="text/javascript">
       window.onload = function () {
@@ -314,6 +314,7 @@
         });
       };
     </script>
+    @stack('scripts')
 </body>
 
 </html>
