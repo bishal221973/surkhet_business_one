@@ -60,3 +60,12 @@ Route::prefix('clients')->group(function () {
     Route::put('update/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
     Route::delete('destroy/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('client.destroy');
 });
+
+Route::prefix('projects')->group(function () {
+    Route::get('/', [App\Http\Controllers\ProjectController::class, 'index'])->name('project.index');
+    Route::get('/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
+    Route::post('store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project.store');
+    Route::get('edit/{id}', [App\Http\Controllers\ProjectController::class, 'edit'])->name('project.edit');
+    Route::put('update/{id}', [App\Http\Controllers\ProjectController::class, 'update'])->name('project.update');
+    Route::delete('destroy/{id}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('project.destroy');
+});

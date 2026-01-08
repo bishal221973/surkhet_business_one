@@ -2,7 +2,8 @@
      <div class="sidebar-brand">
          <a href="./index.html" class="brand-link">
              {{-- <img src="./assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" /> --}}
-             <span class="brand-text fw-light text-uppercase">{{ $user?->organization?->name ?? "Surkhet Business One" }}</span>
+             <span
+                 class="brand-text fw-light text-uppercase">{{ $user?->organization?->name ?? 'Surkhet Business One' }}</span>
          </a>
      </div>
      <div class="sidebar-wrapper">
@@ -82,15 +83,39 @@
                      </ul>
                  </li>
                  <li class="nav-item">
-                     <a href="{{ route('organization.setting') }}" class="nav-link">
-                         <i class="nav-icon fa fa-gears"></i>
-                         <p>Settings</p>
+                     <a href="#" class="nav-link">
+                         <i class="nav-icon fa fa-users"></i>
+                         <p>
+                             Projects
+                             <i class="nav-arrow bi bi-chevron-right"></i>
+                         </p>
                      </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="{{ route('project.create') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>New project</p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{ route('project.index') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>Project list</p>
+                             </a>
+                         </li>
+
+                     </ul>
                  </li>
                  <li class="nav-item">
                      <a href="{{ route('client.index') }}" class="nav-link">
                          <i class="nav-icon fa fa-users"></i>
                          <p>Clients</p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="{{ route('organization.setting') }}" class="nav-link">
+                         <i class="nav-icon fa fa-gears"></i>
+                         <p>Settings</p>
                      </a>
                  </li>
              </ul>
