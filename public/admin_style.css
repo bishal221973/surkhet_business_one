@@ -159,3 +159,6 @@ label,span{
     padding: 10px 25px !important;
     border: 1px solid #cccccc46;
 }
+.my-table tbody tr{
+    border-bottom: 1px solid #cccccc9c !important;
+}

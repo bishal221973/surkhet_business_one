@@ -107,7 +107,7 @@
 
                         <div class="mb-3">
                             <label>Assigned To <span>*</span></label>
-                            <select class="form-control" id="assigned_to" required>
+                            <select class="select" multiple id="assigned_to" required>
                                 <option value="">Select Staff</option>
                                 @foreach ($staffs as $staff)
                                     <option value="{{ $staff->id }}">{{ $staff->name }}</option>
@@ -116,6 +116,7 @@
                         </div>
 
                         <div class="mb-3">
+
                             <label>Status <span>*</span></label>
                             <select class="form-control" id="task_status" required>
                                 <option value="">Select Status</option>
@@ -151,8 +152,13 @@
             const title = document.getElementById('task_title').value;
             const priority = document.getElementById('priority').value;
             const deadline = document.getElementById('deadline').value;
-            const assigned_to = document.getElementById('assigned_to').value;
-            const assigned_name = document.getElementById('assigned_to').selectedOptions[0].text;
+
+            const assignedSelect = document.getElementById('assigned_to');
+            // const assigned_to = document.getElementById('assigned_to').value;
+            // const assigned_name = document.getElementById('assigned_to').selectedOptions[0].text;
+            const assigned_to = JSON.stringify(Array.from(assignedSelect.selectedOptions).map(o => o.value));
+            const assigned_names = Array.from(assignedSelect.selectedOptions).map(o => o.text).join(', ');
+
             const status = document.getElementById('task_status').value;
             const remarks = document.getElementById('remarks').value;
 
@@ -179,7 +185,7 @@
             <td>${title}</td>
             <td>${priority}</td>
             <td>${deadline}</td>
-            <td>${assigned_name}</td>
+            <td>${assigned_names}</td>
             <td>${status}</td>
             <td>${remarks}</td>
             <td><button type="button" class="btn btn-sm btn-danger">Delete</button></td>

@@ -16,4 +16,23 @@ class Project extends Model
         'Ongoing',
         'Completed',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($project) {
+            if (auth()->check()) {
+                $project->organization_id = organization()->id;
+            }
+        });
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
