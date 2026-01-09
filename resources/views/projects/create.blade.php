@@ -512,8 +512,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <form action="{{ $project->id ? route('project.update', $project->id) : route('project.store') }}" method="POST" id="projectForm">
                     @csrf
-                    @method('put')
-
+                    @if ($project?->id)
+                        @method('put')
+                    @endif
                     <div class="row">
 
                         <!-- Client -->
@@ -602,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="col-12 mt-3 text-end">
                             <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                 data-bs-target="#taskModal">Add Task</button>
-                            <button class="btn btn-primary">Save Project</button>
+                            <button class="btn btn-primary">{{$project->id ? 'Update' : 'Create'}} Project</button>
                         </div>
 
                     </div>
