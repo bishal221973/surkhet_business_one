@@ -56,7 +56,7 @@
                     <td>
                         <div class="d-flex gap-2">
                             <x-edit route="{{ route('project.edit', $item->id) }}" />
-                            <x-delete route="{{ route('client.destroy', $item->id) }}" />
+                            <x-delete route="{{ route('project.destroy', $item->id) }}" />
 
 
                         </div>

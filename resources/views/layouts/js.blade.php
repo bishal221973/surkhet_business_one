@@ -267,9 +267,21 @@
     </script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
 
-<script>
+{{-- <script>
 document.querySelectorAll('.select').forEach((el)=>{
 	let settings = {};
  	new TomSelect(el,settings);
 });
+</script> --}}
+<script>
+let assignedTom; // ✅ define it
+
+document.addEventListener('DOMContentLoaded', () => {
+    assignedTom = new TomSelect('#assigned_to', {
+        plugins: ['remove_button'],
+        persist: false,
+        create: false
+    });
+});
 </script>
+
