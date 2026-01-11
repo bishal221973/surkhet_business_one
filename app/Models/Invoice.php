@@ -32,6 +32,8 @@ class Invoice extends Model
             $invoice->organization_id = auth()->user()->organization_id;
             $invoice->invoice_date = now()->format('Y-m-d');
             $invoice->status="Unpaid";
+            $invoice->payable_amount = $invoice->total;
+            $invoice->fiscalyear_id = fiscalyear()->id;
         });
     }
 

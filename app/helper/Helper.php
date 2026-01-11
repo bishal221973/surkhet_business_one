@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Fiscalyear;
 use App\Models\Organization;
 use App\Models\Timeline;
 use Carbon\Carbon;
@@ -101,4 +102,8 @@ function getAdDate($date){
             return $date;
         }
         return bs_to_ad($date);
+}
+function fiscalyear(){
+    $fiscalYear=Fiscalyear::where('is_active', true)->first();
+    return $fiscalYear;
 }

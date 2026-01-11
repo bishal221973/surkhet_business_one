@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Invoice;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class AddPaymentMode extends Component
 {
@@ -23,6 +24,9 @@ class AddPaymentMode extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.add-payment-mode');
+        $invoices=Invoice::where('organization_id',organization()->id)->latest()->get();
+        return view('components.add-payment-mode',[
+            'invoices'=>$invoices
+        ]);
     }
 }

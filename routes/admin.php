@@ -97,4 +97,13 @@ Route::prefix('invoices')->group(function () {
     Route::delete('destroy/{id}', [App\Http\Controllers\InvoiceController::class, 'destroy'])->name('invoice.destroy');
 });
 
+Route::prefix('payments')->group(function () {
+    Route::get('/', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
+    Route::get('/create', [App\Http\Controllers\PaymentController::class, 'create'])->name('payment.create');
+    Route::post('store', [App\Http\Controllers\PaymentController::class, 'store'])->name('payment.store');
+    Route::get('edit/{id}', [App\Http\Controllers\PaymentController::class, 'edit'])->name('payment.edit');
+    Route::put('update/{id}', [App\Http\Controllers\PaymentController::class, 'update'])->name('payment.update');
+    Route::delete('destroy/{id}', [App\Http\Controllers\PaymentController::class, 'destroy'])->name('payment.destroy');
+});
+
 

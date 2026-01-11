@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('fiscalyear_id')->constrained()->onDelete('cascade');
             $table->foreignId('organization_id')->constrained()->onDelete('cascade');
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->string('invoice_number');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('net_amount');
             $table->string('vat_amount');
             $table->string('total');
+            $table->string('payable_amount');
             $table->string('due_date');
             $table->string('status')->nullable();
             $table->text('remarks')->nullable();

@@ -22,6 +22,7 @@ class Project extends Model
         static::creating(function ($project) {
             if (auth()->check()) {
                 $project->organization_id = organization()->id;
+                $project->fiscalyear_id = fiscalyear()->id;
             }
         });
     }

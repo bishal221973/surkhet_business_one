@@ -29,6 +29,7 @@ class Task extends Model
         static::creating(function ($task) {
             if (auth()->check()) {
                 $task->organization_id = organization()->id;
+                $task->fiscalyear_id = fiscalyear()->id;
             }
         });
     }
