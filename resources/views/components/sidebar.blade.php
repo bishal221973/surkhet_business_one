@@ -107,6 +107,12 @@
                      </ul>
                  </li>
                  <li class="nav-item">
+                     <a href="{{ route('invoice.index') }}" class="nav-link">
+                         <i class="nav-icon fa fa-money-bill"></i>
+                         <p>Invoice</p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
                      <a href="{{ route('client.index') }}" class="nav-link">
                          <i class="nav-icon fa fa-users"></i>
                          <p>Clients</p>
@@ -118,12 +124,7 @@
                          <p>Settings</p>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a href="{{ route('invoice.index') }}" class="nav-link">
-                         <i class="nav-icon fa fa-gears"></i>
-                         <p>Invoice</p>
-                     </a>
-                 </li>
+
              </ul>
              <!--end::Sidebar Menu-->
          </nav>

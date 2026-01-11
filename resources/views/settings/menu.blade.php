@@ -6,5 +6,6 @@
         <a href="{{ route('email.setting') }}" class="setting-menu list-group-item list-group-item-action {{ Route::currentRouteName() == 'email.setting' ? 'active' : '' }}">Email Settings</a>
         <a href="{{ route('user.my.profile') }}" class="setting-menu list-group-item list-group-item-action {{ Route::currentRouteName() == 'user.my.profile' ? 'active' : '' }}">User Account Settings</a>
         <a href="{{ route('fiscalyear.index') }}" class="setting-menu list-group-item list-group-item-action {{ Route::currentRouteName() == 'fiscalyear.index' ? 'active' : '' }}">Fiscal Year</a>
+        <a href="{{ route('paymentMode.index') }}" class="setting-menu list-group-item list-group-item-action {{ Route::currentRouteName() == 'paymentMode.index' ? 'active' : '' }}">Payment Mode</a>
     </div>
 </div>

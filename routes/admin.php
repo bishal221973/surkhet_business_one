@@ -20,6 +20,15 @@ Route::prefix('setting')->group(function () {
         Route::put('update/{id}', [App\Http\Controllers\FiscalyearController::class, 'update'])->name('fiscalyear.update');
         Route::delete('destroy/{id}', [App\Http\Controllers\FiscalyearController::class, 'destroy'])->name('fiscalyear.destroy');
     });
+
+    Route::prefix('payment-modes')->group(function () {
+        Route::get('/', [App\Http\Controllers\PaymentModeController::class, 'index'])->name('paymentMode.index');
+        Route::get('/create', [App\Http\Controllers\PaymentModeController::class, 'create'])->name('paymentMode.create');
+        Route::post('store', [App\Http\Controllers\PaymentModeController::class, 'store'])->name('paymentMode.store');
+        Route::get('edit/{id}', [App\Http\Controllers\PaymentModeController::class, 'edit'])->name('paymentMode.edit');
+        Route::put('update/{id}', [App\Http\Controllers\PaymentModeController::class, 'update'])->name('paymentMode.update');
+        Route::delete('destroy/{id}', [App\Http\Controllers\PaymentModeController::class, 'destroy'])->name('paymentMode.destroy');
+    });
 });
 
 
@@ -78,3 +87,5 @@ Route::prefix('invoices')->group(function () {
     Route::put('update/{id}', [App\Http\Controllers\InvoiceController::class, 'update'])->name('invoice.update');
     Route::delete('destroy/{id}', [App\Http\Controllers\InvoiceController::class, 'destroy'])->name('invoice.destroy');
 });
+
+
