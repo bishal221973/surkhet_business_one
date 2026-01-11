@@ -38,6 +38,15 @@ Route::prefix('setting')->group(function () {
         Route::put('update/{id}', [App\Http\Controllers\BankController::class, 'update'])->name('bank.update');
         Route::delete('destroy/{id}', [App\Http\Controllers\BankController::class, 'destroy'])->name('bank.destroy');
     });
+
+    Route::prefix('expense-head')->group(function () {
+        Route::get('/', [App\Http\Controllers\ExpenseCategoryController::class, 'index'])->name('expenseCategory.index');
+        Route::get('/create', [App\Http\Controllers\ExpenseCategoryController::class, 'create'])->name('expenseCategory.create');
+        Route::post('store', [App\Http\Controllers\ExpenseCategoryController::class, 'store'])->name('expenseCategory.store');
+        Route::get('edit/{id}', [App\Http\Controllers\ExpenseCategoryController::class, 'edit'])->name('expenseCategory.edit');
+        Route::put('update/{id}', [App\Http\Controllers\ExpenseCategoryController::class, 'update'])->name('expenseCategory.update');
+        Route::delete('destroy/{id}', [App\Http\Controllers\ExpenseCategoryController::class, 'destroy'])->name('expenseCategory.destroy');
+    });
 });
 
 
