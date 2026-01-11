@@ -40,8 +40,8 @@
                     {{ $employee->user->status ? 'checked' : '' }}></td>
             <td>
                 <div class="d-flex gap-2">
-                    <x-edit route="{{ route('employee.edit', $employee->id) }}"/>
-                    <x-delete route="{{ route('employee.destroy', $employee->id) }}"/>
+                    <x-edit route="{{ route('employee.edit', $employee->id) }}" />
+                    <x-delete route="{{ route('employee.destroy', $employee->id) }}" />
 
 
                 </div>

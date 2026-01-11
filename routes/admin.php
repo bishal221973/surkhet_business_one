@@ -115,4 +115,13 @@ Route::prefix('payments')->group(function () {
     Route::delete('destroy/{id}', [App\Http\Controllers\PaymentController::class, 'destroy'])->name('payment.destroy');
 });
 
+Route::prefix('expense')->group(function () {
+    Route::get('/', [App\Http\Controllers\ExpenseController::class, 'index'])->name('expense.index');
+    Route::get('/create', [App\Http\Controllers\ExpenseController::class, 'create'])->name('expense.create');
+    Route::post('store', [App\Http\Controllers\ExpenseController::class, 'store'])->name('expense.store');
+    Route::get('edit/{id}', [App\Http\Controllers\ExpenseController::class, 'edit'])->name('expense.edit');
+    Route::put('update/{id}', [App\Http\Controllers\ExpenseController::class, 'update'])->name('expense.update');
+    Route::delete('destroy/{id}', [App\Http\Controllers\ExpenseController::class, 'destroy'])->name('expense.destroy');
+});
+
 

@@ -131,7 +131,12 @@
                          <p>Payments</p>
                      </a>
                  </li>
-
+                 <li class="nav-item">
+                     <a href="{{ route('expense.index') }}" class="nav-link">
+                         <i class="nav-icon fa fa-gears"></i>
+                         <p>Expense</p>
+                     </a>
+                 </li>
              </ul>
              <!--end::Sidebar Menu-->
          </nav>
