@@ -69,3 +69,12 @@ Route::prefix('projects')->group(function () {
     Route::put('update/{id}', [App\Http\Controllers\ProjectController::class, 'update'])->name('project.update');
     Route::delete('destroy/{id}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('project.destroy');
 });
+
+Route::prefix('invoices')->group(function () {
+    Route::get('/', [App\Http\Controllers\InvoiceController::class, 'index'])->name('invoice.index');
+    Route::get('/create', [App\Http\Controllers\InvoiceController::class, 'create'])->name('invoice.create');
+    Route::post('store', [App\Http\Controllers\InvoiceController::class, 'store'])->name('invoice.store');
+    Route::get('edit/{id}', [App\Http\Controllers\InvoiceController::class, 'edit'])->name('invoice.edit');
+    Route::put('update/{id}', [App\Http\Controllers\InvoiceController::class, 'update'])->name('invoice.update');
+    Route::delete('destroy/{id}', [App\Http\Controllers\InvoiceController::class, 'destroy'])->name('invoice.destroy');
+});
