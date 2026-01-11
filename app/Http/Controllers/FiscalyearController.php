@@ -24,6 +24,12 @@ class FiscalyearController extends Controller
         }
         Fiscalyear::create($validated);
 
+        createTimeline(
+            'New Fiscalyear Created',
+            'New fiscalyear ' . $validated['name'] . ' has been created by ' . auth()->user()->name,
+            'calender'
+        );
+
         return redirect()->route('fiscalyear.index')->with('success', 'Fiscal year created successfully.');
     }
 
@@ -43,12 +49,23 @@ class FiscalyearController extends Controller
             Fiscalyear::where('is_active', true)->update(['is_active' => false]);
         }
         Fiscalyear::where('id', $id)->update($validated);
+        createTimeline(
+            'Fiscalyear Updated',
+            'Selected fiscalyear ' . $validated['name'] . ' has been updated by ' . auth()->user()->name,
+            'calender'
+        );
         return redirect()->route('fiscalyear.index')->with('success', 'Fiscal year created successfully.');
     }
 
     public function destroy($id)
     {
+        $name=Fiscalyear::find($id)->name;
         Fiscalyear::destroy($id);
+        createTimeline(
+            'Fiscalyear Removed',
+            'Selected fiscalyear ' . $name . ' has been removed by ' . auth()->user()->name,
+            'calender'
+        );
         return redirect()->route('fiscalyear.index')->with('success', 'Fiscal year deleted successfully.');
     }
 }

@@ -87,6 +87,12 @@ class ProjectController extends Controller
             }
         }
 
+        createTimeline(
+            'New Project Created',
+            'New project ' . $data['project_name'] . ' has been created by ' . auth()->user()->name,
+            'key'
+        );
+
         return redirect()->route('project.create')->with('success', 'Project created successfully.');
     }
 
@@ -187,6 +193,12 @@ class ProjectController extends Controller
         $tasksToDelete = array_diff($existingTaskIds, $submittedTaskIds);
         Task::whereIn('id', $tasksToDelete)->delete();
 
+
+        createTimeline(
+            'Selected Project Updated',
+            'Selected project ' . $data['project_name'] . ' has been updated by ' . auth()->user()->name,
+            'key'
+        );
         return redirect()
             ->route('project.index')
             ->with('success', 'Project updated successfully.');
@@ -194,8 +206,14 @@ class ProjectController extends Controller
 
     public function destroy($id)
     {
+        $project=Project::find($id);
         Task::where('project_id', $id)->delete();
         Project::find($id)->delete();
+        createTimeline(
+            'Selected Project Removed',
+            'Selected project ' . $project->project_name . ' has been removed by ' . auth()->user()->name,
+            'key'
+        );
         return redirect()->route('project.index')->with('success', 'Project has been deleted successfully');
     }
 }

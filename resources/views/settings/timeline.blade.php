@@ -10,6 +10,14 @@
                             <i class="timeline-icon fa fa-building text-bg-primary"></i>
                         @elseif($item->type == 'user')
                             <i class="timeline-icon fa fa-user text-bg-primary"></i>
+                            @elseif($item->type == 'calender')
+                            <i class="timeline-icon fa fa-calendar text-bg-primary"></i>
+                            @elseif($item->type == 'cash')
+                            <i class="timeline-icon fa fa-money-bill text-bg-primary"></i>
+                             @elseif($item->type == 'building')
+                            <i class="timeline-icon fa fa-bank text-bg-primary"></i>
+                             @elseif($item->type == 'key')
+                            <i class="timeline-icon fa fa-key text-bg-primary"></i>
                         @endif
                         <div class="timeline-item">
                             <span class="time"> <i class="bi bi-clock-fill"></i> {{ $item->time }} </span>

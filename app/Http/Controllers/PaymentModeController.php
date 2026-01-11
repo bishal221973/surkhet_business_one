@@ -24,6 +24,12 @@ class PaymentModeController extends Controller
         }
         PaymentMode::create($validated);
 
+        createTimeline(
+            'New Payment Mode Created',
+            'New payment mode ' . $validated['name'] . ' has been created by ' . auth()->user()->name,
+            'cash'
+        );
+
         return redirect()->route('paymentMode.index')->with('success', 'Payment mode created successfully.');
     }
 
@@ -43,12 +49,23 @@ class PaymentModeController extends Controller
             PaymentMode::where('is_active', true)->update(['is_active' => false]);
         }
         PaymentMode::where('id', $id)->update($validated);
+        createTimeline(
+            'Payment Mode Updated',
+            'Selected payment mode ' . $validated['name'] . ' has been updated by ' . auth()->user()->name,
+            'cash'
+        );
         return redirect()->route('paymentMode.index')->with('success', 'Payment mode created successfully.');
     }
 
     public function destroy($id)
     {
+        $name=PaymentMode::find($id)->name;
         PaymentMode::destroy($id);
+        createTimeline(
+            'Payment Mode Removed',
+            'Selected payment mode ' . $name . ' has been removed by ' . auth()->user()->name,
+            'cash'
+        );
         return redirect()->route('paymentMode.index')->with('success', 'Payment mode deleted successfully.');
     }
 }

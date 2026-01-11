@@ -32,6 +32,11 @@ class RoleController extends Controller
             'updated_at' => now(),
         ]);
 
+        createTimeline(
+            'New Role Created',
+             'New role ' . $data['name'] . ' has been created by ' . auth()->user()->name,
+             'key'
+        );
 
         return redirect()->back()->with('success', 'Role has been created successfully');
     }
@@ -58,13 +63,23 @@ class RoleController extends Controller
         $role->update([
             'name' => $data['name'],
         ]);
-
+        createTimeline(
+            'Selected Role Created',
+            'Selected role ' . $data['name'] . ' has been updated by ' . auth()->user()->name,
+            'key'
+        );
 
         return redirect()->route('role.index')->with('success', 'Role has been created successfully');
     }
 
     public function destroy($id){
-        Role::find($id)->delete();
+        $role=Role::find($id);
+        createTimeline(
+            'Selected Role Removed',
+            'Selected role ' . $role->name . ' has been removed by ' . auth()->user()->name,
+            'key'
+        );
+        $role->delete();
         return redirect()->route('role.index')->with('success', 'Role has been deleted successfully');
     }
 }

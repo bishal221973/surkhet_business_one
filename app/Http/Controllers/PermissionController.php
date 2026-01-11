@@ -23,7 +23,11 @@ class PermissionController extends Controller
 
         // Sync permissions
         $role->syncPermissions($permissions);
-
+        createTimeline(
+            'Change Role Permission',
+            'Permission of role ' . $role->name . ' has been updated by ' . auth()->user()->name,
+            'key'
+        );
         return redirect()->back()->with('success', 'Permissions have been assigned successfully');
     }
 }

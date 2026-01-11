@@ -20,7 +20,11 @@ class InvoiceController extends Controller
         $validated = $request->validate(\App\Models\Invoice::rules());
 
         \App\Models\Invoice::create($validated);
-
+        createTimeline(
+            'New Invoice Created',
+            'New invoice ' . $request->invoice_number . ' has been created by ' . auth()->user()->name,
+            'cash'
+        );
         return redirect()->route('invoice.index')->with('success', 'Invoice created successfully.');
     }
 
@@ -42,7 +46,11 @@ class InvoiceController extends Controller
         $validated = $request->validate(\App\Models\Invoice::rules());
 
         $invoice->update($validated);
-
+        createTimeline(
+            'Selected Invoice Updated',
+            'Selected invoice ' . $invoice->invoice_number . ' has been updated by ' . auth()->user()->name,
+            'cash'
+        );
         return redirect()->route('invoice.index')->with('success', 'Invoice updated successfully.');
     }
 
@@ -50,6 +58,12 @@ class InvoiceController extends Controller
     {
         $invoice = \App\Models\Invoice::findOrFail($id);
         $invoice->delete();
+
+        createTimeline(
+            'Selected Invoice Removed',
+            'Selected invoice ' . $invoice->invoice_number . ' has been removed by ' . auth()->user()->name,
+            'cash'
+        );
 
         return redirect()->route('invoice.index')->with('success', 'Invoice deleted successfully.');
     }

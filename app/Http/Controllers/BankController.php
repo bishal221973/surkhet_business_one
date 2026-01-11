@@ -20,7 +20,11 @@ class BankController extends Controller
         // return $request;
         $validated = $request->validate(Bank::rules());
         Bank::create($validated);
-
+        createTimeline(
+            'New Bank Created',
+            'New bank ' . $validated['name'] . ' has been created by ' . auth()->user()->name,
+            'building'
+        );
         return redirect()->route('bank.index')->with('success', 'Fiscal year created successfully.');
     }
 
@@ -40,12 +44,23 @@ class BankController extends Controller
             Bank::where('is_active', true)->update(['is_active' => false]);
         }
         Bank::where('id', $id)->update($validated);
+        createTimeline(
+            'Bank Updated',
+            'Selected bank ' . $validated['name'] . ' has been updated by ' . auth()->user()->name,
+            'building'
+        );
         return redirect()->route('bank.index')->with('success', 'Fiscal year created successfully.');
     }
 
     public function destroy($id)
     {
+        $name=Bank::find($id)->name;
         Bank::destroy($id);
+        createTimeline(
+            'Bank Removed',
+            'Selected bank ' . $name . ' has been removed by ' . auth()->user()->name,
+            'building'
+        );
         return redirect()->route('bank.index')->with('success', 'Fiscal year deleted successfully.');
     }
 }

@@ -75,6 +75,8 @@ class EmployeeController extends Controller
             'status' => $request->status,
         ]);
 
+        // createTimeline('Update employee status', "Update employee " . $employee->user->name . "have been created by " . auth()->user()->name, 'user');
+
         return response()->json([
             'success' => true,
             'status' => $request->status,

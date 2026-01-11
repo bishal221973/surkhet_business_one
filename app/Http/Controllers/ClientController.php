@@ -20,7 +20,11 @@ class ClientController extends Controller
         $validated = $request->validate(\App\Models\Client::rules());
 
         \App\Models\Client::create($validated);
-
+        createTimeline(
+            'New Client Created',
+            'New client ' . $validated['name'] . ' has been created by ' . auth()->user()->name,
+            'user'
+        );
         return redirect()->route('client.index')->with('success', 'Client created successfully.');
     }
 
@@ -42,7 +46,11 @@ class ClientController extends Controller
         $validated = $request->validate(\App\Models\Client::rules());
 
         $client->update($validated);
-
+        createTimeline(
+            'Selected Client Updated',
+            'Selected client ' . $client->name . ' has been created by ' . auth()->user()->name,
+            'user'
+        );
         return redirect()->route('client.index')->with('success', 'Client updated successfully.');
     }
 
@@ -50,6 +58,12 @@ class ClientController extends Controller
     {
         $client = \App\Models\Client::findOrFail($id);
         $client->delete();
+
+        createTimeline(
+            'Selected Client Removed',
+            'Selected client ' . $client->name . ' has been created by ' . auth()->user()->name,
+            'user'
+        );
 
         return redirect()->route('client.index')->with('success', 'Client deleted successfully.');
     }
