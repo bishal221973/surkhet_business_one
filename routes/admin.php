@@ -29,6 +29,15 @@ Route::prefix('setting')->group(function () {
         Route::put('update/{id}', [App\Http\Controllers\PaymentModeController::class, 'update'])->name('paymentMode.update');
         Route::delete('destroy/{id}', [App\Http\Controllers\PaymentModeController::class, 'destroy'])->name('paymentMode.destroy');
     });
+
+    Route::prefix('banks')->group(function () {
+        Route::get('/', [App\Http\Controllers\BankController::class, 'index'])->name('bank.index');
+        Route::get('/create', [App\Http\Controllers\BankController::class, 'create'])->name('bank.create');
+        Route::post('store', [App\Http\Controllers\BankController::class, 'store'])->name('bank.store');
+        Route::get('edit/{id}', [App\Http\Controllers\BankController::class, 'edit'])->name('bank.edit');
+        Route::put('update/{id}', [App\Http\Controllers\BankController::class, 'update'])->name('bank.update');
+        Route::delete('destroy/{id}', [App\Http\Controllers\BankController::class, 'destroy'])->name('bank.destroy');
+    });
 });
 
 
