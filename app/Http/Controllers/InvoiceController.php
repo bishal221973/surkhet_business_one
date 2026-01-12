@@ -64,11 +64,14 @@ class InvoiceController extends Controller
 
     public function edit($id)
     {
-        $invoice = \App\Models\Invoice::findOrFail($id);
-
-        return view('invoice.index', [
-            'invoices' => \App\Models\Invoice::all(),
+        $invoice = \App\Models\Invoice::with('services')->findOrFail($id);
+        return view('invoice.create', [
+            'invoices' => Invoice::all(),
             'invoice' => $invoice,
+            'clients' => \App\Models\Client::where('organization_id', organization()->id)->get(),
+            'services' => \App\Models\Service::where('organization_id', organization()->id)->get(),
+            'units' => \App\Models\Unit::where('organization_id', organization()->id)->get(),
+            'estimated_invoice' => $invoice->estimated_invoice
         ]);
     }
 
@@ -79,6 +82,20 @@ class InvoiceController extends Controller
         $validated = $request->validate(\App\Models\Invoice::rules());
 
         $invoice->update($validated);
+
+        if($request->services){
+            InvoiceService::where('invoice_id', $invoice->id)->delete();
+            foreach($request->services as $service){
+                InvoiceService::create([
+                    'invoice_id' => $invoice->id,
+                    'service_id' => $service['service_id'],
+                    'unit_id' => $service['unit_id'],
+                    'quantity' => $service['quantity'],
+                    'rate' => $service['rate'],
+                    'amount' => $service['amount'],
+                ]);
+            }
+        }
         createTimeline(
             'Selected Invoice Updated',
             'Selected invoice ' . $invoice->invoice_number . ' has been updated by ' . auth()->user()->name,
