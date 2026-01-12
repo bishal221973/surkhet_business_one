@@ -178,3 +178,43 @@ label,span{
     box-shadow: none !important;
     outline: none !important;
 }
+
+
+
+.invoice-header{
+    background-color: var(--primary-color);
+    padding: 20px;
+}
+.invoice-logo{
+    height: 40px;
+}
+.invoice-company-name h5,.invoice-company-name small{
+    color: #fff;
+
+}
+.invoice-company-name h5{
+    line-height: 0px;
+}
+.text-white-gray{
+    color: #ccccccc0;
+}
+.invoice-client{
+    line-height: 16px;
+}
+.invoice-table thead{
+    background-color: var(--primary-color);
+}
+.invoice-table thead tr th{
+    color: #fff;
+    padding: 10px;
+}
+.invoice-table tfoot tr{
+    border: none !important;
+}
+.invoice-table tfoot tr td{
+    padding: 0 !important;
+}
+.totalAmt{
+    background-color: #005b9c84;
+    padding: 8px 15px;
+}
