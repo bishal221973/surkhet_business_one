@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('fiscalyear_id')->constrained()->onDelete('cascade');
             $table->foreignId('organization_id')->constrained()->onDelete('cascade');
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
-            $table->string('invoice_number');
+            $table->string('invoice_number')->nullable();
+            $table->string('estimated_invoice')->nullable();
             $table->string('invoice_date');
             $table->string('sub_total');
             $table->string('discount')->default(0);

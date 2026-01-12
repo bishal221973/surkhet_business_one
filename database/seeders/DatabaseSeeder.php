@@ -23,5 +23,11 @@ class DatabaseSeeder extends Seeder
         $this->call(OrganizationSeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(FiscalYearSeeder::class);
+        $this->call(BankSeeder::class);
+        $this->call(ClientSeeder::class);
+        $this->call(ExpenseHeadSeeder::class);
+        $this->call(PaymentModeSeeder::class);
+        $this->call(UnitSeeder::class);
+        $this->call(ServiceSeeder::class);
     }
 }

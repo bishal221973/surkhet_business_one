@@ -225,3 +225,6 @@ label,span{
     padding: 5px 15px !important;
     border: 1px solid #ccc;
 }
+.font12{
+    font-size: 13px;
+}

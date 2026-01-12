@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
+use App\Models\InvoiceService;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -17,21 +19,40 @@ class InvoiceController extends Controller
 
     public function create()
     {
+        $estimated_invoice=1;
+        $invoice=Invoice::latest()->first();
+
+        if($invoice){
+            $estimated_invoice=$invoice->estimated_invoice+1;
+        }
         return view('invoice.create', [
             'invoices' => \App\Models\Invoice::with('client')->latest()->get(),
             'invoice' => new \App\Models\Invoice(),
             'clients' => \App\Models\Client::where('organization_id', organization()->id)->get(),
             'services' => \App\Models\Service::where('organization_id', organization()->id)->get(),
             'units' => \App\Models\Unit::where('organization_id',organization()->id)->get(),
+            'estimated_invoice'=>$estimated_invoice
         ]);
     }
 
     public function store(Request $request)
     {
-        // return $request;
+        // return organization()->id;
         $validated = $request->validate(\App\Models\Invoice::rules());
 
-        \App\Models\Invoice::create($validated);
+        $invoice=\App\Models\Invoice::create($validated);
+        if($request->services){
+            foreach($request->services as $service){
+                InvoiceService::create([
+                    'invoice_id' => $invoice->id,
+                    'service_id' => $service['service_id'],
+                    'unit_id' => $service['unit_id'],
+                    'quantity' => $service['quantity'],
+                    'rate' => $service['rate'],
+                    'amount' => $service['amount'],
+                ]);
+            }
+        }
         createTimeline(
             'New Invoice Created',
             'New invoice ' . $request->invoice_number . ' has been created by ' . auth()->user()->name,
