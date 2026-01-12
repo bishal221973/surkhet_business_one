@@ -47,6 +47,15 @@ Route::prefix('setting')->group(function () {
         Route::put('update/{id}', [App\Http\Controllers\ExpenseCategoryController::class, 'update'])->name('expenseCategory.update');
         Route::delete('destroy/{id}', [App\Http\Controllers\ExpenseCategoryController::class, 'destroy'])->name('expenseCategory.destroy');
     });
+
+    Route::prefix('units')->group(function () {
+        Route::get('/', [App\Http\Controllers\UnitController::class, 'index'])->name('unit.index');
+        Route::get('/create', [App\Http\Controllers\UnitController::class, 'create'])->name('unit.create');
+        Route::post('store', [App\Http\Controllers\UnitController::class, 'store'])->name('unit.store');
+        Route::get('edit/{id}', [App\Http\Controllers\UnitController::class, 'edit'])->name('unit.edit');
+        Route::put('update/{id}', [App\Http\Controllers\UnitController::class, 'update'])->name('unit.update');
+        Route::delete('destroy/{id}', [App\Http\Controllers\UnitController::class, 'destroy'])->name('unit.destroy');
+    });
 });
 
 
