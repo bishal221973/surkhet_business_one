@@ -43,24 +43,7 @@ class ExpenseController extends Controller
         ]);
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     // return $request;
-    //     $data = $request->validate(Expense::rules());
-    //     $expense=Expense::find($id);
-    //     $bank = Bank::find($request->bank_id);
 
-    //     if ($bank->balance < $request->amount) {
-    //         return back()->withInput()->with('error', 'Bank balance is not enough');
-    //     }
-    //     $expense->update($data);
-    //     createTimeline(
-    //         'Expense Updated',
-    //         null,
-    //         'cash'
-    //     );
-    //     return redirect()->route('expense.index')->with('success', 'Expense created successfully.');
-    // }
 
 
     public function update(Request $request, $id)

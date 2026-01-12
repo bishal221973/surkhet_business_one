@@ -137,6 +137,12 @@
                          <p>Expense</p>
                      </a>
                  </li>
+                  <li class="nav-item">
+                     <a href="{{ route('income.index') }}" class="nav-link">
+                         <i class="nav-icon fa fa-gears"></i>
+                         <p>Income</p>
+                     </a>
+                 </li>
              </ul>
              <!--end::Sidebar Menu-->
          </nav>

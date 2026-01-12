@@ -125,3 +125,13 @@ Route::prefix('expense')->group(function () {
 });
 
 
+Route::prefix('income')->group(function () {
+    Route::get('/', [App\Http\Controllers\IncomeController::class, 'index'])->name('income.index');
+    Route::get('/create', [App\Http\Controllers\IncomeController::class, 'create'])->name('income.create');
+    Route::post('store', [App\Http\Controllers\IncomeController::class, 'store'])->name('income.store');
+    Route::get('edit/{id}', [App\Http\Controllers\IncomeController::class, 'edit'])->name('income.edit');
+    Route::put('update/{id}', [App\Http\Controllers\IncomeController::class, 'update'])->name('income.update');
+    Route::delete('destroy/{id}', [App\Http\Controllers\IncomeController::class, 'destroy'])->name('income.destroy');
+});
+
+
