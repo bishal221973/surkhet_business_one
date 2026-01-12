@@ -46,13 +46,17 @@
                 class="btn {{ request()->type == 'payment' ? 'active-btn' : 'btn-secondary' }}">Payments</a>
             <a href="{{ route('client.show', $client->id) }}?type=os_balance"
                 class="btn {{ request()->type == 'os_balance' ? 'active-btn' : 'btn-secondary' }}">Outstanding Balance</a>
+                <a href="{{ route('client.show', $client->id) }}?type=ledger"
+                class="btn {{ request()->type == 'ledger' ? 'active-btn' : 'btn-secondary' }}">Ledgers</a>
         </div>
         @if (request()->type == 'invoices')
             <x-client-invoices :client="$client" />
         @elseif(request()->type == 'payment')
         <x-client-payments :client="$client" />
-        @else
+        @elseif(request()->type == 'os_balance')
         <x-client-outstanding-balance :client="$client" />
+        @elseif(request()->type == 'ledger')
+        <x-client-ledger :client="$client" />
         @endif
     </div>
 
