@@ -14,6 +14,18 @@ class InvoiceController extends Controller
         ]);
     }
 
+
+    public function create()
+    {
+        return view('invoice.create', [
+            'invoices' => \App\Models\Invoice::with('client')->latest()->get(),
+            'invoice' => new \App\Models\Invoice(),
+            'clients' => \App\Models\Client::where('organization_id', organization()->id)->get(),
+            'services' => \App\Models\Service::where('organization_id', organization()->id)->get(),
+            'units' => \App\Models\Unit::where('organization_id',organization()->id)->get(),
+        ]);
+    }
+
     public function store(Request $request)
     {
         // return $request;
