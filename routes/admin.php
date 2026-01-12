@@ -56,6 +56,15 @@ Route::prefix('setting')->group(function () {
         Route::put('update/{id}', [App\Http\Controllers\UnitController::class, 'update'])->name('unit.update');
         Route::delete('destroy/{id}', [App\Http\Controllers\UnitController::class, 'destroy'])->name('unit.destroy');
     });
+
+    Route::prefix('service')->group(function () {
+        Route::get('/', [App\Http\Controllers\ServiceController::class, 'index'])->name('service.index');
+        Route::get('/create', [App\Http\Controllers\ServiceController::class, 'create'])->name('service.create');
+        Route::post('store', [App\Http\Controllers\ServiceController::class, 'store'])->name('service.store');
+        Route::get('edit/{id}', [App\Http\Controllers\ServiceController::class, 'edit'])->name('service.edit');
+        Route::put('update/{id}', [App\Http\Controllers\ServiceController::class, 'update'])->name('service.update');
+        Route::delete('destroy/{id}', [App\Http\Controllers\ServiceController::class, 'destroy'])->name('service.destroy');
+    });
 });
 
 

@@ -10,5 +10,6 @@
         <a href="{{ route('bank.index') }}" class="setting-menu list-group-item list-group-item-action {{ Route::currentRouteName() == 'bank.index' ? 'active' : '' }}">Bank Account</a>
         <a href="{{ route('expenseCategory.index') }}" class="setting-menu list-group-item list-group-item-action {{ Route::currentRouteName() == 'expenseCategory.index' ? 'active' : '' }}">Expense Head</a>
         <a href="{{ route('unit.index') }}" class="setting-menu list-group-item list-group-item-action {{ Route::currentRouteName() == 'unit.index' ? 'active' : '' }}">Unit</a>
+        <a href="{{ route('service.index') }}" class="setting-menu list-group-item list-group-item-action {{ Route::currentRouteName() == 'service.index' ? 'active' : '' }}">Service</a>
     </div>
 </div>

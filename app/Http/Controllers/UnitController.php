@@ -24,7 +24,7 @@ class UnitController extends Controller
         createTimeline(
             'New Unit Created',
             'New unit ' . $validated['name'] . ' has been created by ' . auth()->user()->name,
-            'cash'
+            'circle'
         );
 
         return redirect()->route('unit.index')->with('success', 'Payment mode created successfully.');
@@ -46,7 +46,7 @@ class UnitController extends Controller
         createTimeline(
             'Unit Updated',
             'Selected unit ' . $validated['name'] . ' has been updated by ' . auth()->user()->name,
-            'cash'
+            'circle'
         );
         return redirect()->route('unit.index')->with('success', 'Payment mode created successfully.');
     }
@@ -58,7 +58,7 @@ class UnitController extends Controller
         createTimeline(
             'Unit Removed',
             'Selected unit ' . $name . ' has been removed by ' . auth()->user()->name,
-            'cash'
+            'circle'
         );
         return redirect()->route('unit.index')->with('success', 'Payment mode deleted successfully.');
     }
