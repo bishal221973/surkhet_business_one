@@ -212,7 +212,10 @@ label,span{
     border: none !important;
 }
 .invoice-table tfoot tr td{
-    padding: 0 !important;
+    padding: 5px 0 !important;
+}
+.invoice-table tbody tr td{
+    padding: 10px 0 !important;
 }
 .totalAmt{
     background-color: #005b9c84;

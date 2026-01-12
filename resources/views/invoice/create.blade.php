@@ -179,7 +179,7 @@
 @push('scripts')
 <script>
 let rowIndex = {{ $rowIndex ?? 0 }};
-
+addEmptyRow();
 function addEmptyRow() {
     const i = rowIndex;
     const html = `

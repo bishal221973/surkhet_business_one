@@ -1,6 +1,6 @@
  <x-table :headers="[
                 '#',
-                'Invoice No.',
+                'Est. Invoice',
                 'Due Date',
                 'Sub Total',
                 'Discount',
@@ -19,7 +19,8 @@
                     <tr>
                         <td><small>{{ $loop->iteration }}</small></td>
                         <td>
-                            <small class="d-block">{{ $item->invoice_number }}</small>
+                            <x-invoice-show :invoice="$item" />
+                            {{-- <small class="d-block">{{ $item->invoice_number }}</small> --}}
                         </td>
 
                         <td>

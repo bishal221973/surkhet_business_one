@@ -11,7 +11,7 @@ class InvoiceController extends Controller
     public function index()
     {
         return view('invoice.index', [
-            'invoices' => \App\Models\Invoice::with('client')->latest()->get(),
+            'invoices' => \App\Models\Invoice::with('client','services.service')->latest()->get(),
             'invoice' => new \App\Models\Invoice(),
         ]);
     }
@@ -64,7 +64,7 @@ class InvoiceController extends Controller
 
     public function edit($id)
     {
-        $invoice = \App\Models\Invoice::with('services')->findOrFail($id);
+        $invoice = \App\Models\Invoice::with('services.service','client')->findOrFail($id);
         return view('invoice.create', [
             'invoices' => Invoice::all(),
             'invoice' => $invoice,

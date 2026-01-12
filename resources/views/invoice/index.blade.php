@@ -10,7 +10,7 @@
     <div class="container mt-1">
         <x-table :headers="[
             '#',
-            'Invoice Number',
+            'Est. Invoice',
             'Client',
             'Due Date',
             'Sub Total',
