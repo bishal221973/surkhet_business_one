@@ -40,23 +40,24 @@
         </div>
 
         <div class="d-flex gap-1 mt-3">
+            <a href="{{ route('client.show', $client->id) }}?type=ledger"
+                class="btn {{ request()->type == 'ledger' ? 'active-btn' : 'btn-secondary' }}">Ledgers</a>
             <a href="{{ route('client.show', $client->id) }}?type=invoices"
                 class="btn {{ request()->type == 'invoices' ? 'active-btn' : 'btn-secondary' }}">Invoices</a>
             <a href="{{ route('client.show', $client->id) }}?type=payment"
                 class="btn {{ request()->type == 'payment' ? 'active-btn' : 'btn-secondary' }}">Payments</a>
             <a href="{{ route('client.show', $client->id) }}?type=os_balance"
                 class="btn {{ request()->type == 'os_balance' ? 'active-btn' : 'btn-secondary' }}">Outstanding Balance</a>
-                <a href="{{ route('client.show', $client->id) }}?type=ledger"
-                class="btn {{ request()->type == 'ledger' ? 'active-btn' : 'btn-secondary' }}">Ledgers</a>
+
         </div>
         @if (request()->type == 'invoices')
             <x-client-invoices :client="$client" />
         @elseif(request()->type == 'payment')
-        <x-client-payments :client="$client" />
+            <x-client-payments :client="$client" />
         @elseif(request()->type == 'os_balance')
-        <x-client-outstanding-balance :client="$client" />
+            <x-client-outstanding-balance :client="$client" />
         @elseif(request()->type == 'ledger')
-        <x-client-ledger :client="$client" />
+            <x-client-ledger :client="$client" />
         @endif
     </div>
 
