@@ -38,7 +38,7 @@
                                 <select name="role" class="form-control form-select">
                                     <option value="">Select Role</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->name }}" {{ old('role') == $role->name ? 'selected' : '' }}>
+                                        <option value="{{ $role->name }}" {{ old('role',$employee?->user?->roles[0]?->name) == $role->name ? 'selected' : '' }}>
                                             {{ $role->name }}</option>
                                     @endforeach
                                 </select>

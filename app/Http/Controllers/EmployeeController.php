@@ -31,8 +31,9 @@ class EmployeeController extends Controller
 
 
                 // Update organization main table
+                $data['profile'] = null;
                 if ($request->hasFile('profile')) {
-                    $data['profile'] = $request->file('profile')->store('organization_logos', 'public');
+                    $data['profile'] = $request->file('profile')->store('profile', 'public');
                 }
                 $user=User::create([
                     'name' => $data['name'],
@@ -133,13 +134,12 @@ class EmployeeController extends Controller
 
                 createTimeline('Employee updated', "Selected employee " . $data['name'] . "have been updated by " . auth()->user()->name, 'user');
             });
-
             return redirect()->route('employee.index')->with('success', 'New employee has been created successfully!');
 
         } catch (\Exception $e) {
             // Optional: log error
             Log::error('Organization update failed: ' . $e->getMessage());
-
+            return $e->getMessage();
             return back()->with('error', 'Something went wrong. Please try again.');
         }
     }

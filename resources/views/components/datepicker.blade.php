@@ -19,7 +19,7 @@
         </label>
     @endif
     @php
-        $dateType = App\models\OrganizationSetting::where('key', 'date_type')->first();
+        $dateType = App\Models\OrganizationSetting::where('key', 'date_type')->first();
     @endphp
     @if ($dateType->value == 'AD Date')
         <input type="date" name="{{ $name }}" id="{{ $id ?? $name }}"

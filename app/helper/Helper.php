@@ -96,7 +96,7 @@ function organization(){
 }
 
 function getAdDate($date){
-        $dateType = App\models\OrganizationSetting::where('key', 'date_type')->first();
+        $dateType = App\Models\OrganizationSetting::where('key', 'date_type')->first();
 
         if($dateType->value == 'AD Date'){
             return $date;
