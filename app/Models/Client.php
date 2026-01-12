@@ -31,4 +31,9 @@ class Client extends Model
             'remarks' => 'nullable',
         ];
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

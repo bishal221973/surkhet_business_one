@@ -22,14 +22,28 @@
 
                         <div class="col-md-4 mb-3">
                             <label>Client</label>
+                            @if ($client?->id)
+                                <select disabled class="form-control form-select">
+                                    <option value="">Select client</option>
+                                    @foreach ($clients as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ $client?->id == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <input type="hidden" value="{{ $client->id }}" name="client_id">
+                            @else
                             <select class="form-control form-select" name="client_id">
-                                <option value="">Select client</option>
-                                @foreach ($clients as $client)
-                                    <option value="{{ $client->id }}"
-                                        {{ $invoice?->client_id == $client->id ? 'selected' : '' }}>{{ $client->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                                    <option value="">Select client</option>
+                                    @foreach ($clients as $client)
+                                        <option value="{{ $client->id }}"
+                                            {{ $invoice?->client_id == $client->id ? 'selected' : '' }}>
+                                            {{ $client->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            @endif
                         </div>
                         <x-datepicker col="mb-3 col-md-4" required="true"
                             value="{{ old('due_date', $invoice?->due_date) }}" label="Due Date" name="due_date"
@@ -45,7 +59,7 @@
                             <label>Discount</label>
                             <input type="number" step="0.01" class="form-control" name="discount"
                                 value="{{ old('discount', $invoice?->discount) ?? 0 }}" placeholder="Discount Amount"
-                                id="discount" oninput="computeTotal()" >
+                                id="discount" oninput="computeTotal()">
                         </div>
                         <div class="col-md-4 mb-3">
                             <label>Net Amount</label>
@@ -63,9 +77,8 @@
 
                         <div class="col-md-4 mb-3">
                             <label>Vat Amount</label>
-                            <input type="text" name="vat_amount"
-                                        class="form-control" readonly id="vatAmount"
-                                        value="{{ old('vat_amount', $invoice?->vat_amount) ?? 0 }}">
+                            <input type="text" name="vat_amount" class="form-control" readonly id="vatAmount"
+                                value="{{ old('vat_amount', $invoice?->vat_amount) ?? 0 }}">
                         </div>
 
 

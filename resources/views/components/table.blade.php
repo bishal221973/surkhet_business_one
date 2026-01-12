@@ -18,9 +18,10 @@
 <div class="shadow1 my-table ">
 
     <div class="overflow-x-auto">
-        <table id="{{ $id }}" class="min-w-full w-full  display nowrap main-table"  {{ $attributes->merge([
-        'style' => 'border-collapse: collapse;'
-    ]) }}>
+        <table id="{{ $id }}" class="min-w-full w-full  display nowrap main-table"
+            {{ $attributes->merge([
+                'style' => 'border-collapse: collapse;',
+            ]) }}>
             <thead class="table-head">
                 <tr>
                     @foreach ($headers as $header)
@@ -33,6 +34,11 @@
             <tbody>
                 {{ $slot }}
             </tbody>
+            @isset($footer)
+                <tfoot>
+                    {{ $footer }}
+                </tfoot>
+            @endisset
         </table>
     </div>
 
@@ -118,19 +124,19 @@
                 const prevDisabled = info.page === 0 ? 'disabled' : '';
                 $pagination.append(
                     `<button class="btn btn-sm btn-outline-primary" ${prevDisabled} data-page="${info.page - 1}">Prev</button>`
-                    );
+                );
 
                 for (let i = 0; i < info.pages; i++) {
                     const active = i === info.page ? 'active-btn' : '';
                     $pagination.append(
                         `<button class="btn btn-sm btn-outline-primary ${active}" data-page="${i}">${i + 1}</button>`
-                        );
+                    );
                 }
 
                 const nextDisabled = info.page === info.pages - 1 ? 'disabled' : '';
                 $pagination.append(
                     `<button class="btn btn-sm btn-outline-primary" ${nextDisabled} data-page="${info.page + 1}">Next</button>`
-                    );
+                );
             }
 
             updatePagination();

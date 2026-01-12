@@ -107,6 +107,30 @@
                      </ul>
                  </li>
                  <li class="nav-item">
+                     <a href="#" class="nav-link">
+                         <i class="nav-icon fa fa-left-right"></i>
+                         <p>
+                             Income/Expense
+                             <i class="nav-arrow bi bi-chevron-right"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="{{ route('income.index') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>Income</p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{ route('expense.index') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>Expense</p>
+                             </a>
+                         </li>
+
+                     </ul>
+                 </li>
+                 <li class="nav-item">
                      <a href="{{ route('invoice.index') }}" class="nav-link">
                          <i class="nav-icon fa fa-money-bill"></i>
                          <p>Invoice</p>
@@ -131,7 +155,7 @@
                          <p>Payments</p>
                      </a>
                  </li>
-                 <li class="nav-item">
+                 {{-- <li class="nav-item">
                      <a href="{{ route('expense.index') }}" class="nav-link">
                          <i class="nav-icon fa fa-gears"></i>
                          <p>Expense</p>
@@ -142,7 +166,7 @@
                          <i class="nav-icon fa fa-gears"></i>
                          <p>Income</p>
                      </a>
-                 </li>
+                 </li> --}}
              </ul>
              <!--end::Sidebar Menu-->
          </nav>

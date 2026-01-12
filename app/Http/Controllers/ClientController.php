@@ -29,6 +29,14 @@ class ClientController extends Controller
     }
 
 
+    public function show($id)
+    {
+        return view('clients.show', [
+            'clients' => \App\Models\Client::all(),
+            'client' => \App\Models\Client::find($id)->load(['invoices.payments.paymentMode','invoices.payments.bank','invoices.payments.receiver']),
+        ]);
+    }
+
     public function edit($id)
     {
         $client = \App\Models\Client::findOrFail($id);

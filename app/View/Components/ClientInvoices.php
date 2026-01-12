@@ -2,22 +2,19 @@
 
 namespace App\View\Components;
 
-use App\Models\Client;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class AddInvoice extends Component
+class ClientInvoices extends Component
 {
     /**
      * Create a new component instance.
      */
 
-    public $invoice;
     public $client;
-    public function __construct($invoice=null,$client=null)
+    public function __construct($client)
     {
-        $this->invoice = $invoice;
         $this->client = $client;
     }
 
@@ -26,9 +23,6 @@ class AddInvoice extends Component
      */
     public function render(): View|Closure|string
     {
-        $clients=Client::where('organization_id',organization()->id)->latest()->get();
-        return view('components.add-invoice',[
-            'clients'=>$clients,
-        ]);
+        return view('components.client-invoices');
     }
 }

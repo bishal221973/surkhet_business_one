@@ -25,7 +25,7 @@ class InvoiceController extends Controller
             'New invoice ' . $request->invoice_number . ' has been created by ' . auth()->user()->name,
             'cash'
         );
-        return redirect()->route('invoice.index')->with('success', 'Invoice created successfully.');
+        return redirect()->back()->with('success', 'Invoice created successfully.');
     }
 
 

@@ -19,8 +19,10 @@
                 <tr>
                     <td><small>{{ $loop->iteration }}</small></td>
                     <td>
-                        <b>{{ $item->name }}</b>
-                        <small class="d-block">{{ $item->type }}</small>
+                        <a href="{{route('client.show',$item->id)}}?type=invoices" style="text-decoration: none">
+                            <b>{{ $item->name }}</b>
+                            <small class="d-block">{{ $item->type }}</small>
+                        </a>
                     </td>
                     <td>
                         <small class="d-block">{{ $item->email }}</small>
