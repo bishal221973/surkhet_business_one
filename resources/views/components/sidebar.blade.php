@@ -176,6 +176,12 @@
                                  <p>Overdues Invoice</p>
                              </a>
                          </li>
+                          <li class="nav-item">
+                             <a href="{{ route('pl.report') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>Profit & Loss</p>
+                             </a>
+                         </li>
                      </ul>
                  </li>
 
