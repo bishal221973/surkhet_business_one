@@ -131,11 +131,54 @@
                      </ul>
                  </li>
                  <li class="nav-item">
-                     <a href="{{ route('invoice.index') }}" class="nav-link">
+                     <a href="#" class="nav-link">
                          <i class="nav-icon fa fa-money-bill"></i>
-                         <p>Invoice</p>
+                         <p>
+                             Invoice
+                             <i class="nav-arrow bi bi-chevron-right"></i>
+                         </p>
                      </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="{{ route('invoice.create') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>New Invoice</p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{ route('invoice.index') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>List</p>
+                             </a>
+                         </li>
+
+                     </ul>
                  </li>
+
+                 <li class="nav-item">
+                     <a href="#" class="nav-link">
+                         <i class="nav-icon fa fa-file"></i>
+                         <p>
+                             Reports
+                             <i class="nav-arrow bi bi-chevron-right"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="{{ route('upcoming.dues.report') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>Upcoming Dues</p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{ route('overdues.report') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>Overdues Invoice</p>
+                             </a>
+                         </li>
+                     </ul>
+                 </li>
+
                  <li class="nav-item">
                      <a href="{{ route('client.index') }}" class="nav-link">
                          <i class="nav-icon fa fa-users"></i>

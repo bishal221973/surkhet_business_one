@@ -154,3 +154,9 @@ Route::prefix('income')->group(function () {
 });
 
 
+Route::prefix('reports')->group(function () {
+    Route::get('/upcoming-dues', [App\Http\Controllers\ReportController::class, 'upcoming'])->name('upcoming.dues.report');
+    Route::get('/over-dues-invoice', [App\Http\Controllers\ReportController::class, 'overdues'])->name('overdues.report');
+});
+
+

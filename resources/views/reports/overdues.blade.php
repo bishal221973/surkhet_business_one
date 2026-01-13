@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
-@section('page-title', 'Invoice Management')
+@section('page-title', 'Upcoming Dues')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active" aria-current="page">Invoice Management</li>
+    <li class="breadcrumb-item active" aria-current="page">Reports</li>
+    <li class="breadcrumb-item active" aria-current="page">Upcoming Dues</li>
 @endsection
 
 @section('content')
@@ -18,16 +19,12 @@
             'Net Amount',
             'Vat Amount',
             'Total Amount',
+            'Paid Amount',
+            'Payable Amount',
             'Status',
-            'Action',
         ]">
             <x-slot name="addButtons">
-                {{-- <x-add-employee :employee="$employee" :roles="$roles" /> --}}
-                {{-- <x-add-invoice :invoice="$invoice" /> --}}
-                <a href="{{ route('invoice.create') }}" class="main-bg border-0 px-3 rounded shadow btn text-white">
-                    <i class="fa fa-plus"></i>
-                    Add Invoice
-                </a>
+
             </x-slot>
 
             @foreach ($invoices as $item)
@@ -65,16 +62,13 @@
                         <small class="d-block">Rs. {{ $item?->total }}</small>
                     </td>
                     <td>
-                        <small class="d-block">{{ invoiceStatus($item) }}</small>
+                        <small class="d-block">Rs. {{ $item?->total - $item?->payable_amount }}</small>
                     </td>
-
                     <td>
-                        <div class="d-flex gap-2">
-                            <x-edit route="{{ route('invoice.edit', $item->id) }}" />
-                            <x-delete route="{{ route('invoice.destroy', $item->id) }}" />
-
-
-                        </div>
+                        <small class="d-block">Rs. {{ $item?->payable_amount }}</small>
+                    </td>
+                    <td>
+                        <small class="d-block">{{ invoiceStatus($item) }}</small>
                     </td>
                 </tr>
             @endforeach

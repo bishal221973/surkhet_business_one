@@ -107,3 +107,20 @@ function fiscalyear(){
     $fiscalYear=Fiscalyear::where('is_active', true)->first();
     return $fiscalYear;
 }
+
+function invoiceStatus($invoice){
+    if($invoice->payable_amount <=0){
+        return 'Paid';
+    }else{
+        if($invoice->due_date < Carbon::now()->format('Y-m-d')){
+            return 'Overdue';
+        }else{
+            if($invoice->payable_amount == $invoice->total){
+                return 'Unpaid';
+            }else{
+                return 'Partial Paid';
+            }
+
+        }
+    }
+}

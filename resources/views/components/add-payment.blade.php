@@ -22,7 +22,7 @@
                                 @foreach ($invoices as $invoice)
                                     <option value="{{ $invoice->id }}" data-client="{{ $invoice->client_id }}"
                                         data-payable="{{ $invoice->payable_amount }}">
-                                        {{ $invoice->invoice_number }}</option>
+                                        {{ $invoice->estimated_invoice }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -42,7 +42,7 @@
                             <small class="d-block">Rs. {{ $item?->total }}</small>
                         </td>
                         <td>
-                            <small class="d-block">{{ $item?->status }}</small>
+                            <small class="d-block">{{ invoiceStatus($item) }}</small>
                         </td>
                         <td>
                             <small class="d-block">{{ $item?->remarks }}</small>
