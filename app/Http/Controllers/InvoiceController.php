@@ -86,6 +86,9 @@ class InvoiceController extends Controller
         if($request->services){
             InvoiceService::where('invoice_id', $invoice->id)->delete();
             foreach($request->services as $service){
+                if(!$service['service_id']){
+                    continue;
+                }
                 InvoiceService::create([
                     'invoice_id' => $invoice->id,
                     'service_id' => $service['service_id'],

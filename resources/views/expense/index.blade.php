@@ -46,6 +46,21 @@
                 </tr>
             @endforeach
 
+            <x-slot name="footer">
+                <tr>
+                    <td style="font-size: 13px">Total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-size: 13px">Rs. {{ $expenses->sum('amount') }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </x-slot>
+
         </x-table>
     </div>
 

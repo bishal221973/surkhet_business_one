@@ -73,6 +73,22 @@
                 </tr>
             @endforeach
 
+            <x-slot name="footer">
+                <tr>
+                    <td></td>
+                    <td style="font-size: 13px">Total</td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-size: 13px">Rs. {{ $invoices->sum('sub_total') }} </td>
+                    <td style="font-size: 13px">Rs. {{ $invoices->sum('discount') }} </td>
+                    <td style="font-size: 13px">Rs. {{ $invoices->sum('net_amount') }} </td>
+                    <td style="font-size: 13px">Rs. {{ $invoices->sum('vat_amount') }} </td>
+                    <td style="font-size: 13px">Rs. {{ $invoices->sum('total') }} </td>
+                    <td style="font-size: 13px">Rs. {{ $invoices->sum('total') - $invoices->sum('payable_amount') }} </td>
+                    <td style="font-size: 13px">Rs. {{ $invoices->sum('payable_amount') }} </td>
+                    <td></td>
+                </tr>
+            </x-slot>
         </x-table>
     </div>
 

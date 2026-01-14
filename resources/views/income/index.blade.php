@@ -29,7 +29,7 @@
                     <td><small>{{ $item->title }}</small></td>
                     <td><small>{{ $item->bank->name }}</small></td>
                     <td><small>{{ $item->paymentMode->name }}</small></td>
-                    <td><small>{{ $item->client->name }}</small></td>
+                    <td><small>{{ $item?->client?->name ?? "-" }}</small></td>
                     <td><small>{{ $item->payment_date }}</small></td>
                     <td><small>Rs. {{ $item->amount }}</small></td>
                     <td><small>{{ $item->description }}</small></td>
@@ -44,6 +44,20 @@
                     </td>
                 </tr>
             @endforeach
+
+            <x-slot name="footer">
+                <tr>
+                    <td></td>
+                    <td style="font-size: 13px">Total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-size: 13px">Rs. {{ $incomes->sum('amount') }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </x-slot>
 
         </x-table>
     </div>

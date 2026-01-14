@@ -17,13 +17,13 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <label>Title</label>
-                            <input type="text" class="form-control" name="title"
+                            <label>Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="title" required
                                 value="{{ old('title', $income?->title) }}" placeholder="Title">
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label>Payment Modes</label>
-                            <select class="form-control form-select" name="payment_mode_id">
+                            <label>Payment Modes<span class="text-danger">*</span></label>
+                            <select class="form-control form-select" name="payment_mode_id" required>
                                 <option value="">Select payment mode</option>
                                 @foreach ($paymentModes as $paymentMode)
                                     <option value="{{ $paymentMode->id }}"
@@ -34,8 +34,8 @@
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label>Banks</label>
-                            <select class="form-control form-select" name="bank_id">
+                            <label>Banks<span class="text-danger">*</span></label>
+                            <select class="form-control form-select" name="bank_id" required>
                                 <option value="">Select bank</option>
                                 @foreach ($banks as $bank)
                                     <option value="{{ $bank->id }}"
@@ -64,9 +64,9 @@
 
 
                         <div class="col-md-4 mb-3">
-                            <label>Amount</label>
-                            <input type="number" step="0.01" class="form-control" name="amount"
-                                value="{{ old('amount', $income?->amount) }}" placeholder="Expense Amount">
+                            <label>Amount<span class="text-danger">*</span></label>
+                            <input type="number" step="0.01" class="form-control" name="amount" required
+                                value="{{ old('amount', $income?->amount) }}" placeholder="Income Amount">
                         </div>
 
 
