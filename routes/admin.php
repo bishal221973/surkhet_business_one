@@ -158,6 +158,7 @@ Route::prefix('reports')->group(function () {
     Route::get('/upcoming-dues', [App\Http\Controllers\ReportController::class, 'upcoming'])->name('upcoming.dues.report');
     Route::get('/over-dues-invoice', [App\Http\Controllers\ReportController::class, 'overdues'])->name('overdues.report');
     Route::get('/profit-loss', [App\Http\Controllers\ReportController::class, 'profitLoss'])->name('pl.report');
+    Route::get('/vat-report', [App\Http\Controllers\ReportController::class, 'vatReport'])->name('vat.report');
 });
 
 

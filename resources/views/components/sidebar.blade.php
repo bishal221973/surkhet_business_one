@@ -183,6 +183,12 @@
                                  <p>Profit & Loss</p>
                              </a>
                          </li>
+                         <li class="nav-item">
+                             <a href="{{ route('vat.report') }}" class="nav-link">
+                                 <i class="nav-icon bi bi-circle"></i>
+                                 <p>Vat Report</p>
+                             </a>
+                         </li>
                      </ul>
                  </li>
 

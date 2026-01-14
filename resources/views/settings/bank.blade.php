@@ -28,8 +28,6 @@
                                 <div class="d-flex gap-2">
                                     <x-edit route="{{ route('bank.edit', $item->id) }}" />
                                     <x-delete route="{{ route('bank.destroy', $item->id) }}" />
-
-
                                 </div>
                             </td>
                         </tr>

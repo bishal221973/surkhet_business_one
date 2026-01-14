@@ -136,6 +136,16 @@ class ReportController extends Controller
             'to'
         ));
     }
-
+    public function vatReport()
+    {
+       $invoices = Invoice::with('client', 'services.service')->where('vat_amount', '>', 0)->latest()->get();
+        return view('reports.vatReport', [
+            'invoices' => $invoices,
+            'invoice' => new Invoice(),
+        ]);
+    }
 
 }
+
+
+
