@@ -124,3 +124,8 @@ function invoiceStatus($invoice){
         }
     }
 }
+
+function isActiveRoute(array $routes): bool
+{
+    return in_array(request()->route()?->getName(), $routes);
+}

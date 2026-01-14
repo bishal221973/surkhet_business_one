@@ -22,7 +22,7 @@
                         <tr>
                             <td><small>{{ $loop->iteration }}</small></td>
                             <td><small>{{ $item->name }}</small></td>
-                            <td><small>{{ $item->balance }}</small></td>
+                            <td><small>Rs. {{ $item->balance }}</small></td>
                             <td><small>{{ $item->description }}</small></td>
                             <td>
                                 <div class="d-flex gap-2">
@@ -34,6 +34,16 @@
                             </td>
                         </tr>
                     @endforeach
+
+                    <x-slot name="footer">
+                        <tr>
+                            <td></td>
+                            <td style="font-size: 12px">Total</td>
+                            <td style="font-size: 12px">Rs. {{ $banks->sum('balance') }}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </x-slot>
 
                 </x-table>
 

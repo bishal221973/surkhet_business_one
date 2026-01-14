@@ -7,11 +7,12 @@
          </a>
      </div>
      <div class="sidebar-wrapper">
-         <nav class="mt-2">
+        <nav class="mt-2">
+            {{-- {{ isActiveRoute(['home']) ? 'active' : '123' }} --}}
              <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation"
                  aria-label="Main navigation" data-accordion="false" id="navigation">
 
-                 <li class="nav-item">
+                 <li class="nav-item {{ isActiveRoute(['home']) ? 'active' : '' }}">
                      <a href="{{ route('home') }}" class="nav-link">
                          <i class="nav-icon bi bi-speedometer"></i>
                          <p>Dashboard</p>
@@ -58,7 +59,7 @@
                          </li>
                      </ul>
                  </li>
-                 <li class="nav-item">
+                 <li class="nav-item {{ isActiveRoute(['employee.index','role.index']) ? 'active' : '' }}">
                      <a href="#" class="nav-link">
                          <i class="nav-icon fa fa-users"></i>
                          <p>
