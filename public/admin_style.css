@@ -244,3 +244,7 @@ label,span{
     background-color: #1A4F76 !important;
 
 } */
+.menu-format.active{
+    background-color: var(--primary-color);
+    color: #fff;
+}

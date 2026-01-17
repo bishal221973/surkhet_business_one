@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +34,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         // ->prefix('admin')
         ->group(__DIR__ . '/admin.php');
 // });
+
+
+Route::get('/process-queue', function () {
+    // Processes the next available job and then stops
+    Artisan::call('queue:work');
+    return redirect()->back();
+})->name('process-queue');

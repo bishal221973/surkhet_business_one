@@ -285,3 +285,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+<script src="{{ asset('summernote/summernote.js') }}"></script>
+{{-- <script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+  </script> --}}
+<script>
+  $(document).ready(function () {
+    $('#mailFormat').summernote({
+      toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['insert', ['link', 'picture']],
+        ['view', ['fullscreen']]
+      ]
+    });
+  });
+</script>

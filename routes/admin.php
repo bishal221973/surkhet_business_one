@@ -2,6 +2,8 @@
 
 // use App\Http\Controllers\OrganizationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailNotificationController;
+use App\Http\Controllers\NotificationFormatController;
 
 Route::prefix('setting')->group(function () {
     Route::get('organizational-setting', [App\Http\Controllers\OrganizationController::class, 'index'])->name('organization.setting');
@@ -64,6 +66,14 @@ Route::prefix('setting')->group(function () {
         Route::get('edit/{id}', [App\Http\Controllers\ServiceController::class, 'edit'])->name('service.edit');
         Route::put('update/{id}', [App\Http\Controllers\ServiceController::class, 'update'])->name('service.update');
         Route::delete('destroy/{id}', [App\Http\Controllers\ServiceController::class, 'destroy'])->name('service.destroy');
+    });
+    Route::prefix('email-notification-format')->group(function () {
+        Route::get('/', [NotificationFormatController::class, 'employeeWelcomeMailFormat'])->name('employee.welcome.mail.format');
+        Route::post('/employee-welcome-mail-format', [NotificationFormatController::class, 'employeeWelcomeMailFormatStore'])->name('employee.welcome.mail.format.store');
+
+        Route::get('/client-welcome-mail-format', [NotificationFormatController::class, 'clientWelcomeMailFormat'])->name('client.welcome.mail.format');
+        Route::post('/send-demo-mail', [NotificationFormatController::class, 'sendDemoMail'])->name('send.demo.mail');
+
     });
 });
 
