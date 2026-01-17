@@ -36,5 +36,62 @@ class MailFormatSeeder extends Seeder
         {{company_email}}<br>
         {{company_address}}',
         ]);
+
+
+
+        MailFormat::create([
+            'organization_id' => 1,
+            'type' => 'invoice_created_mail',
+            'subject' => 'New Invoice from {{company_name}}',
+            'body' => '
+        Dear {{client_name}},<br><br>
+
+        A new invoice has been generated for you by {{company_name}}.<br><br>
+
+        <strong>Invoice Details:</strong><br>
+        &nbsp;&nbsp; Invoice Number: {{invoice_number}}<br>
+        &nbsp;&nbsp; Invoice Date: {{invoice_date}}<br>
+        &nbsp;&nbsp; Due Date: {{due_date}}<br>
+        &nbsp;&nbsp; Amount: {{amount}}<br><br>
+
+        You can view your invoice and make payment using the link below:<br>
+        <a href="{{invoice_link}}">View Invoice</a><br><br>
+
+        If you have any questions regarding this invoice, please reach out to us at {{company_email}}.<br><br>
+
+        Warm regards,<br>
+        {{company_name}}<br>
+        {{company_email}}<br>
+        {{company_address}}
+    ',
+
+
+        ]);
+
+        MailFormat::create([
+            'organization_id' => 1,
+            'type' => 'payment_received_mail',
+            'subject' => 'Payment Received for Invoice #{{invoice_number}} from {{company_name}}',
+            'body' => '
+        Dear {{client_name}},<br><br>
+
+        We are pleased to inform you that we have received your payment for the following invoice:<br><br>
+
+        <strong>Invoice Details:</strong><br>
+        &nbsp;&nbsp; Invoice Number: {{invoice_number}}<br>
+        &nbsp;&nbsp; Invoice Date: {{invoice_date}}<br>
+        &nbsp;&nbsp; Payment Date: {{payment_date}}<br>
+        &nbsp;&nbsp; Amount Paid: {{amount}}<br><br>
+
+        Thank you for your prompt payment! If you have any questions regarding this payment or your invoice, please feel free to contact us at {{company_email}}.<br><br>
+
+        Warm regards,<br>
+        {{company_name}}<br>
+        {{company_email}}<br>
+        {{company_address}}
+    ',
+
+
+        ]);
     }
 }

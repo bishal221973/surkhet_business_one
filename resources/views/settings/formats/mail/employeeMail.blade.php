@@ -23,7 +23,7 @@
                 @include('settings.formats.mail.menu')
 
                 @php
-                    $employeWelcomeMail=$formats->where('type',request()->format)->first();
+                    $employeWelcomeMail = $formats->where('type', request()->format)->first();
                 @endphp
 
                 <div class="row">
@@ -34,14 +34,14 @@
                                     @csrf
                                     <input type="hidden" name="type" value="{{ request()->format }}">
                                     <x-form.input required="true" col="mb-3 col-md-12" label="Subject" name="subject"
-                                        placeholder="Subject" value="{{ $employeWelcomeMail?->subject }}"/>
+                                        placeholder="Subject" value="{{ $employeWelcomeMail?->subject }}" />
 
-                                    <x-form.textarea label="Message" id="mailFormat" name="body" col="mb-3 col-md-12" rows="6"
-                                        placeholder="Message" value="{!!   $employeWelcomeMail?->body !!}"/>
+                                    <x-form.textarea label="Message" id="mailFormat" name="body" col="mb-3 col-md-12"
+                                        rows="6" placeholder="Message" value="{!! $employeWelcomeMail?->body !!}" />
 
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button class="btn btn-primary">Save</button>
-                                        </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button class="btn btn-primary">Save</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -54,32 +54,32 @@
                                 <form action="{{ route('send.demo.mail') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="type" value="{{ request()->format }}">
-                                     <x-form.input required="true" col="mb-3 col-md-12" label="To" name="to"
+                                    <x-form.input required="true" col="mb-3 col-md-12" label="To" name="to"
                                         placeholder="Email" />
 
-                                        <div class="d-flex justify-content-end">
-                                            <button class="btn btn-primary">Send</button>
-                                        </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-primary">Send</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
 
-                         <div class="card mt-2">
+                        <div class="card mt-2">
                             <div class="card-body">
 
                                 <ul>
                                     <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
                                         <b>
                                             @php
-                                                echo "{{ company_name  }}";
+                                                echo '{{ company_name }}';
                                             @endphp
                                         </b>
                                         <small class="d-block">Company Name</small>
                                     </li>
-                                     <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                    <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
                                         <b>
                                             @php
-                                                echo "{{ company_email   }}";
+                                                echo '{{ company_email }}';
                                             @endphp
                                         </b>
                                         <small class="d-block">Company Email</small>
@@ -88,49 +88,145 @@
                                     <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
                                         <b>
                                             @php
-                                                echo "{{ company_address   }}";
+                                                echo '{{ company_address }}';
                                             @endphp
                                         </b>
                                         <small class="d-block">Company Address</small>
                                     </li>
 
-                                     <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
-                                        <b>
-                                            @php
-                                                echo "{{ employee_name    }}";
-                                            @endphp
-                                        </b>
-                                        <small class="d-block">Employee Name</small>
-                                    </li>
-                                    <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
-                                        <b>
-                                            @php
-                                                echo "{{ joining_date     }}";
-                                            @endphp
-                                        </b>
-                                        <small class="d-block">Joining Date</small>
-                                    </li>
-                                    <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
-                                        <b>
-                                            @php
-                                                echo "{{ email     }}";
-                                            @endphp
-                                        </b>
-                                        <small class="d-block">Employee auth email</small>
-                                    </li>
-                                    <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
-                                        <b>
-                                            @php
-                                                echo "{{ password }}";
-                                            @endphp
-                                        </b>
-                                        <small class="d-block">Employee auth password</small>
-                                    </li>
+                                    @if (request()->format == 'employee_welcome_mail')
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ employee_name }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Employee Name</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ joining_date }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Joining Date</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ email }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Employee auth email</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ password }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Employee auth password</small>
+                                        </li>
+                                    @elseif(request()->format == 'client_welcome_mail')
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ client_name }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Client Name</small>
+                                        </li>
+                                    @elseif(request()->format == 'invoice_created_mail')
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ client_name }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Client Name</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ invoice_number }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Invoice Number</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ invoice_date }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Invoice Date</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ due_date }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Due Date</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ amount }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Paid Amount</small>
+                                        </li>
+                                    @elseif(request()->format == 'payment_received_mail')
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ client_name }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Client Name</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ invoice_number }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Invoice Number</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ invoice_date }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Invoice Date</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ due_date }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Due Date</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ amount }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Amount</small>
+                                        </li>
+                                    @endif
+
+
                                 </ul>
 
                                 <i>
                                     <b class="text-danger">Note : </b>
-                                    <small>All keywords are case sensitive and must be in double quotes. These keywords will be replaced with actual values.</small>
+                                    <small>All keywords are case sensitive and must be in double quotes. These keywords will
+                                        be replaced with actual values.</small>
                                 </i>
                             </div>
                         </div>

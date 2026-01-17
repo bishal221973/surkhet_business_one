@@ -38,12 +38,16 @@ class DemoFormatMail extends Mailable implements ShouldQueue
 
         $subject = $this->mailFormat->subject;
 
-        // Replace placeholders dynamically
-        $subject = str_replace(
-            ['{{company_name}}'],
-            [$this->organization->name], // actual company name
-            $subject
-        );
+        // Prepare the placeholders and their values
+        $placeholders = [
+            '{{company_name}}' => $this->organization->name,
+            '{{invoice_number}}' =>  'INV-123', // make sure $this->invoice exists
+            // add more if needed
+        ];
+
+        // Replace all placeholders in the subject
+        $subject = str_replace(array_keys($placeholders), array_values($placeholders), $subject);
+
         return new Envelope(
             subject: $subject,
         );
@@ -62,6 +66,11 @@ class DemoFormatMail extends Mailable implements ShouldQueue
                 'data' => [
                     'employee_name' => 'John Doe',
                     'client_name' => 'John Doe',
+                    'invoice_number' => 'INV-123',
+                    'invoice_date' => today()->format('Y-m-d'),
+                    'due_date' => today()->format('Y-m-d'),
+                    'payment_date' => today()->format('Y-m-d'),
+                    'amount' => 1000,
                     'company_name' => $this->organization->name,
                     'joining_date' => today()->format('Y-m-d'),
                     'email' => 'john.doe@example.com',
