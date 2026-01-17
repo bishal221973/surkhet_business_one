@@ -83,37 +83,37 @@ class OrganizationSeeder extends Seeder
         ]);
         OrganizationSetting::create([
             'key' => 'email_host',
-            'value' => 'mailpit',
+            'value' => 'smtp.gmail.com',
             'organization_id' => $org->id
         ]);
         OrganizationSetting::create([
             'key' => 'email_port',
-            'value' => '1020',
+            'value' => '465',
             'organization_id' => $org->id
         ]);
         OrganizationSetting::create([
             'key' => 'email_username',
-            'value' => 'demo@test.com',
+            'value' => 'bishalcodeslaravel@gmail.com',
             'organization_id' => $org->id
         ]);
         OrganizationSetting::create([
             'key' => 'email_password',
-            'value' => 'password',
+            'value' => 'rpurhikbrvsvvbtq',
             'organization_id' => $org->id
         ]);
         OrganizationSetting::create([
             'key' => 'email_encryption',
-            'value' => 'tls',
+            'value' => 'ssl',
             'organization_id' => $org->id
         ]);
         OrganizationSetting::create([
             'key' => 'email_from_adress',
-            'value' => 'demo@test.com',
+            'value' => 'bishalcodeslaravel@gmail.com',
             'organization_id' => $org->id
         ]);
         OrganizationSetting::create([
             'key' => 'email_from_name',
-            'value' => 'App name',
+            'value' => 'Surkhet Business One',
             'organization_id' => $org->id
         ]);
     }

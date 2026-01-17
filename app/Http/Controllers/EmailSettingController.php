@@ -94,3 +94,4 @@ class EmailSettingController extends Controller
     }
 
 }
+
