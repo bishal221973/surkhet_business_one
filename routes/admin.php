@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailNotificationController;
 use App\Http\Controllers\NotificationFormatController;
+use App\Http\Controllers\NotificationSettingController;
 
 Route::prefix('setting')->group(function () {
     Route::get('organizational-setting', [App\Http\Controllers\OrganizationController::class, 'index'])->name('organization.setting');
@@ -74,6 +75,10 @@ Route::prefix('setting')->group(function () {
         Route::get('/client-welcome-mail-format', [NotificationFormatController::class, 'clientWelcomeMailFormat'])->name('client.welcome.mail.format');
         Route::post('/send-demo-mail', [NotificationFormatController::class, 'sendDemoMail'])->name('send.demo.mail');
 
+    });
+    Route::prefix('notification-setting')->group(function () {
+        Route::get('/', [NotificationSettingController::class, 'employeeWelcomeMailFormat'])->name('notification.setting');
+        Route::post('/store', [NotificationSettingController::class, 'store'])->name('notification.setting.store');
     });
 });
 

@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentModeSeeder::class);
         $this->call(UnitSeeder::class);
         $this->call(ServiceSeeder::class);
+        $this->call(MailFormatSeeder::class);
     }
 }
