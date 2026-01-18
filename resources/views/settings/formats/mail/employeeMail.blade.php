@@ -67,7 +67,7 @@
                         <div class="card mt-2">
                             <div class="card-body">
 
-                                <ul>
+                                <ul class="placeholder-list">
                                     <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
                                         <b>
                                             @php
@@ -178,6 +178,47 @@
                                             <small class="d-block">Paid Amount</small>
                                         </li>
                                     @elseif(request()->format == 'payment_received_mail')
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ client_name }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Client Name</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ invoice_number }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Invoice Number</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ invoice_date }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Invoice Date</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ due_date }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Due Date</small>
+                                        </li>
+                                        <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
+                                            <b>
+                                                @php
+                                                    echo '{{ amount }}';
+                                                @endphp
+                                            </b>
+                                            <small class="d-block">Amount</small>
+                                        </li>
+                                        @elseif(request()->format == 'upcoming_due_mail' || request()->format == 'overdues_mail')
                                         <li style="background-color: #cccccc94" class="px-3 py-1 rounded mb-2">
                                             <b>
                                                 @php

@@ -93,5 +93,60 @@ class MailFormatSeeder extends Seeder
 
 
         ]);
+
+        MailFormat::create([
+            'organization_id' => 1,
+            'type' => 'upcoming_due_mail',
+            'subject' => 'Upcoming Payment Due for Invoice #{{invoice_number}} from {{company_name}}',
+            'body' => '
+        Dear {{client_name}},<br><br>
+
+        This is a friendly reminder that the following invoice is approaching its due date:<br><br>
+
+        <strong>Invoice Details:</strong><br>
+        &nbsp;&nbsp; Invoice Number: {{invoice_number}}<br>
+        &nbsp;&nbsp; Invoice Date: {{invoice_date}}<br>
+        &nbsp;&nbsp; Due Date: {{due_date}}<br>
+        &nbsp;&nbsp; Amount Due: {{amount}}<br><br>
+
+        We kindly request you to make the payment by the due date to avoid any late fees.<br><br>
+
+        If you have already made the payment, please disregard this notice. For any questions, feel free to contact us at {{company_email}}.<br><br>
+
+        Warm regards,<br>
+        {{company_name}}<br>
+        {{company_email}}<br>
+        {{company_address}}
+    ',
+
+
+        ]);
+
+        MailFormat::create([
+            'organization_id' => 1,
+            'type' => 'overdues_mail',
+            'subject' => 'Overdue Payment Reminder for Invoice #{{invoice_number}} from {{company_name}}',
+            'body' => '
+        Dear {{client_name}},<br><br>
+
+        Our records indicate that the following invoice is past its due date:<br><br>
+
+        <strong>Invoice Details:</strong><br>
+        &nbsp;&nbsp; Invoice Number: {{invoice_number}}<br>
+        &nbsp;&nbsp; Invoice Date: {{invoice_date}}<br>
+        &nbsp;&nbsp; Due Date: {{due_date}}<br>
+        &nbsp;&nbsp; Amount Due: {{amount}}<br><br>
+
+        We kindly request that you make the payment at your earliest convenience to avoid further late fees or interruptions in service.<br><br>
+
+        If you have already made the payment, please disregard this notice. For any questions or assistance, feel free to contact us at {{company_email}}.<br><br>
+
+        Warm regards,<br>
+        {{company_name}}<br>
+        {{company_email}}<br>
+        {{company_address}}
+    ',
+        ]);
+
     }
 }

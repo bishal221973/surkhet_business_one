@@ -248,3 +248,9 @@ label,span{
     background-color: var(--primary-color);
     color: #fff;
 }
+.placeholder-list{
+    padding: 5px !important;
+}
+.placeholder-list li b{
+    font-size: 13px;
+}
