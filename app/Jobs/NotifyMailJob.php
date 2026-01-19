@@ -46,7 +46,11 @@ class NotifyMailJob implements ShouldQueue
             'email'=> $this?->data['email'] ?? null,
             'password'=> $this?->data['password'] ?? null,
             'joining_date'=> $this?->data['joining_date'] ?? null,
-            'client_name'=> $this?->data['name'] ?? null
+            'client_name'=> $this?->data['name'] ?? null,
+            'invoice_number'=> $this?->data['invoice_number'] ?? null,
+            'invoice_date'=> $this?->data['invoice_date'] ?? null,
+            'due_date' => $this?->data['due_date'] ?? null,
+            'amount'=> $this?->data['amount'] ?? null,
         ];
 
         Mail::to($this->mail)->send(new NotifyMail($this->subject, $this->body, $data,$this->organization));

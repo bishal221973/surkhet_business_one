@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Invoice;
 use App\Models\InvoiceService;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class InvoiceController extends Controller
     public function index()
     {
         return view('invoice.index', [
-            'invoices' => \App\Models\Invoice::with('client','services.service')->latest()->get(),
+            'invoices' => \App\Models\Invoice::with('client', 'services.service')->latest()->get(),
             'invoice' => new \App\Models\Invoice(),
         ]);
     }
@@ -19,19 +20,19 @@ class InvoiceController extends Controller
 
     public function create()
     {
-        $estimated_invoice=1;
-        $invoice=Invoice::latest()->first();
+        $estimated_invoice = 1;
+        $invoice = Invoice::latest()->first();
 
-        if($invoice){
-            $estimated_invoice=$invoice->estimated_invoice+1;
+        if ($invoice) {
+            $estimated_invoice = $invoice->estimated_invoice + 1;
         }
         return view('invoice.create', [
             'invoices' => \App\Models\Invoice::with('client')->latest()->get(),
             'invoice' => new \App\Models\Invoice(),
             'clients' => \App\Models\Client::where('organization_id', organization()->id)->get(),
             'services' => \App\Models\Service::where('organization_id', organization()->id)->get(),
-            'units' => \App\Models\Unit::where('organization_id',organization()->id)->get(),
-            'estimated_invoice'=>$estimated_invoice
+            'units' => \App\Models\Unit::where('organization_id', organization()->id)->get(),
+            'estimated_invoice' => $estimated_invoice
         ]);
     }
 
@@ -40,9 +41,9 @@ class InvoiceController extends Controller
         // return organization()->id;
         $validated = $request->validate(\App\Models\Invoice::rules());
 
-        $invoice=\App\Models\Invoice::create($validated);
-        if($request->services){
-            foreach($request->services as $service){
+        $invoice = \App\Models\Invoice::create($validated);
+        if ($request->services) {
+            foreach ($request->services as $service) {
                 InvoiceService::create([
                     'invoice_id' => $invoice->id,
                     'service_id' => $service['service_id'],
@@ -52,6 +53,18 @@ class InvoiceController extends Controller
                     'amount' => $service['amount'],
                 ]);
             }
+        }
+        $client = Client::find($validated['client_id']);
+
+        if ($client->email) {
+            $data=[
+                'invoice_number' => $invoice->estimated_invoice,
+                'invoice_date' => $invoice->created_at->format('Y-m-d'),
+                'due_date' => $invoice->due_date,
+                'amount' => $invoice->payable_amount,
+                'name' => $client->name
+            ];
+            notifyMail($client->email, 'invoice_created_mail', $data);
         }
         createTimeline(
             'New Invoice Created',
@@ -64,7 +77,7 @@ class InvoiceController extends Controller
 
     public function edit($id)
     {
-        $invoice = \App\Models\Invoice::with('services.service','client')->findOrFail($id);
+        $invoice = \App\Models\Invoice::with('services.service', 'client')->findOrFail($id);
         return view('invoice.create', [
             'invoices' => Invoice::all(),
             'invoice' => $invoice,
@@ -83,10 +96,10 @@ class InvoiceController extends Controller
 
         $invoice->update($validated);
 
-        if($request->services){
+        if ($request->services) {
             InvoiceService::where('invoice_id', $invoice->id)->delete();
-            foreach($request->services as $service){
-                if(!$service['service_id']){
+            foreach ($request->services as $service) {
+                if (!$service['service_id']) {
                     continue;
                 }
                 InvoiceService::create([
