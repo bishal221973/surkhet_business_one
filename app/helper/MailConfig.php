@@ -28,10 +28,8 @@ function applyMailSettings()
 
 function notifyMail($mail,$type,$data){
     $setting = NotificationSetting::where('notification', $type)->where('organization_id', organization()->id)->first();
-    // dd($setting);
     if($setting?->status == true){
         $format = MailFormat::where('type', $type)->where('organization_id', organization()->id)->first();
-        // dd( "Hello");
         NotifyMailJob::dispatch($mail, $format->subject, $data, $format->body,organization());
     }
 }

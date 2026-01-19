@@ -92,7 +92,12 @@ function getFormatedDate($adDate)
 
 
 function organization(){
-    return Organization::where('id', auth()->user()->organization_id)->first();
+    if(auth()->user()?->id){
+
+        return Organization::where('id', auth()->user()->organization_id)->first();
+    }else{
+        return Organization::first();
+    }
 }
 
 function getAdDate($date){
