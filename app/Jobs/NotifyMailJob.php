@@ -50,6 +50,7 @@ class NotifyMailJob implements ShouldQueue
             'invoice_number'=> $this?->data['invoice_number'] ?? null,
             'invoice_date'=> $this?->data['invoice_date'] ?? null,
             'due_date' => $this?->data['due_date'] ?? null,
+            'payment_date' => $this?->data['payment_date'] ?? null,
             'amount'=> $this?->data['amount'] ?? null,
         ];
 

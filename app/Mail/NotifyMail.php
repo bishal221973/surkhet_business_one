@@ -39,7 +39,7 @@ class NotifyMail extends Mailable implements ShouldQueue
         // Prepare the placeholders and their values
         $placeholders = [
             '{{company_name}}' => $this->organization->name,
-            '{{invoice_number}}' => $this->data?->invoice_number ?? null, // make sure $this->invoice exists
+            '{{invoice_number}}' => $this->data['invoice_number'] ?? null, // make sure $this->invoice exists
             // add more if needed
         ];
 
