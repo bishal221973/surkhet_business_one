@@ -1,10 +1,13 @@
 <?php
 
+use App\Models\MailFormat;
+use App\Jobs\NotifyMailJob;
+use App\Models\NotificationSetting;
 use App\Models\OrganizationSetting;
 
 function applyMailSettings()
 {
-    $settings = OrganizationSetting::where('organization_id', auth()->user()->organization_id)
+    $settings = OrganizationSetting::where('organization_id', auth()?->user()?->organization_id ?? 1)
         ->pluck('value', 'key'); // get all settings as ['key' => 'value']
 
     if ($settings->isNotEmpty()) {
@@ -20,5 +23,15 @@ function applyMailSettings()
             'mail.from.address' => $settings->get('email_from_address', config('mail.from.address')),
             'mail.from.name' => $settings->get('email_from_name', config('mail.from.name')),
         ]);
+    }
+}
+
+function notifyMail($mail,$type,$data){
+    $setting = NotificationSetting::where('notification', $type)->where('organization_id', organization()->id)->first();
+    // dd($setting);
+    if($setting?->status == true){
+        $format = MailFormat::where('type', $type)->where('organization_id', organization()->id)->first();
+        // dd( "Hello");
+        NotifyMailJob::dispatch($mail, $format->subject, $data, $format->body,organization());
     }
 }

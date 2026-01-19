@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 class NotificationFormatController extends Controller
 {
     public function employeeWelcomeMailFormat(){
-        $formats=MailFormat::where('organization_id',1)->get();
+        $formats=MailFormat::where('organization_id',organization()->id)->get();
         return view('settings.formats.mail.employeeMail',[
             'formats'=>$formats
         ]);

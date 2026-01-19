@@ -14,17 +14,18 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $roles=Role::where('organization_id', organization()->id)->get();
-        $employees=Employee::latest()->where('organization_id', organization()->id)->with('user')->get();
+        $roles = Role::where('organization_id', organization()->id)->get();
+        $employees = Employee::latest()->where('organization_id', organization()->id)->with('user')->get();
         return view('hr.employee', [
-            'employee'=>new Employee(),
-            'employees'=>$employees,
-            'roles'=>$roles
+            'employee' => new Employee(),
+            'employees' => $employees,
+            'roles' => $roles
         ]);
     }
 
-    public function store(Request $request){
-        $data=$request->validate(Employee::rules());
+    public function store(Request $request)
+    {
+        $data = $request->validate(Employee::rules());
 
         try {
             DB::transaction(function () use ($data, $request) {
@@ -35,28 +36,31 @@ class EmployeeController extends Controller
                 if ($request->hasFile('profile')) {
                     $data['profile'] = $request->file('profile')->store('profile', 'public');
                 }
-                $user=User::create([
+                $user = User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
                     'phone' => $data['phone'],
-                    'password' =>Hash::make($data['password']),
+                    'password' => Hash::make($data['password']),
                     'profile' => $data['profile'],
                 ]);
-
                 Employee::create([
-                    'user_id'=>$user->id,
-                    'salary'=>$data['salary'],
-                    'joining_date'=>getAdDate($data['joining_date']),
+                    'user_id' => $user->id,
+                    'salary' => $data['salary'],
+                    'joining_date' => getAdDate($data['joining_date']),
                 ]);
                 $user->syncRoles($data['role']);
 
-                createTimeline('New employee created', "New employee ".$data['name'] . "have been created by ".auth()->user()->name, 'user');
+                notifyMail($data['email'], 'employee_welcome_mail', $data);
+                createTimeline('New employee created', "New employee " . $data['name'] . "have been created by " . auth()->user()->name, 'user');
+
             });
 
             return back()->with('success', 'New employee has been created successfully!');
 
         } catch (\Exception $e) {
             // Optional: log error
+
+            return $e->getMessage();
             Log::error('Organization update failed: ' . $e->getMessage());
 
             return back()->with('error', 'Something went wrong. Please try again.');
@@ -86,12 +90,12 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        $roles=Role::where('organization_id', organization()->id)->get();
-        $employees=Employee::latest()->where('organization_id', organization()->id)->with('user')->get();
+        $roles = Role::where('organization_id', organization()->id)->get();
+        $employees = Employee::latest()->where('organization_id', organization()->id)->with('user')->get();
         return view('hr.employee', [
-            'employee'=>$employee,
-            'employees'=>$employees,
-            'roles'=>$roles
+            'employee' => $employee,
+            'employees' => $employees,
+            'roles' => $roles
         ]);
     }
 

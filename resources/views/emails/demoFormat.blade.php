@@ -9,7 +9,7 @@
 
 <body>
     @php
-        $body = $mailFormat->body;
+        $body = $mailFormat?->body ?? $mailFormat ?? null;
 
         foreach ($data as $key => $value) {
             $body = str_replace('{{'.$key.'}}', $value, $body);
