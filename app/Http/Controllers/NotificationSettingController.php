@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrganizationSetting;
 use Illuminate\Http\Request;
 
 class NotificationSettingController extends Controller
@@ -38,6 +39,17 @@ class NotificationSettingController extends Controller
                 ]
             );
         }
+
+        OrganizationSetting::updateOrCreate(
+            [
+                'organization_id' => organization()->id,
+                'key' => 'auto_notify',
+            ],
+            [
+                'value' => $request->auto_notify,
+            ]
+        );
+
 
         return back()->with('success', 'Notification settings updated successfully.');
     }
