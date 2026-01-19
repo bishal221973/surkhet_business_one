@@ -1,4 +1,4 @@
-<div class="rounded shadow d-flex px-2 py-1 align-items-center"style="background-color:#1919708d">
+<div class="rounded shadow d-flex px-2 py-1 align-items-center"style="background-color:var(--primary-color)">
 
     <div style="position: relative; display: inline-block; margin-left: 10px;">
         <button type="button" id="{{ $id }}-colvis-btn" class="bg-transparent border-0">

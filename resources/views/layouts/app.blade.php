@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
-                                <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-primary">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color: var(--primary-color)"><b>Home</b></a></li>
                                 @yield('breadcrumb') <!-- dynamic breadcrumb items -->
                             </ol>
                         </div>
