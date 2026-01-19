@@ -17,14 +17,15 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $validated = $request->validate(\App\Models\Client::rules());
+        $data = $request->validate(\App\Models\Client::rules());
 
-        \App\Models\Client::create($validated);
+        \App\Models\Client::create($data);
         createTimeline(
             'New Client Created',
-            'New client ' . $validated['name'] . ' has been created by ' . auth()->user()->name,
+            'New client ' . $data['name'] . ' has been created by ' . auth()->user()->name,
             'user'
         );
+        notifyMail($data['email'], 'client_welcome_mail', $data);
         return redirect()->route('client.index')->with('success', 'Client created successfully.');
     }
 

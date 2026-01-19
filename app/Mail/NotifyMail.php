@@ -62,7 +62,7 @@ class NotifyMail extends Mailable implements ShouldQueue
                 'mailFormat' => $this?->body ?? null,
                 'data' => [
                     'employee_name' => $this->data['employee_name'] ?? null,
-                    'client_name' => 'John Doe',
+                    'client_name' => $this->data['client_name'] ?? null,
                     'invoice_number' => 'INV-123',
                     'invoice_date' => today()->format('Y-m-d'),
                     'due_date' => today()->format('Y-m-d'),
