@@ -26,6 +26,10 @@ class Kernel extends ConsoleKernel
             $schedule->command('app:send-upcomming-dues-mail')
                 ->dailyAt($time)
                 ->withoutOverlapping();
+
+            $schedule->command('app:send-over-dues-mail')
+                ->dailyAt($time)
+                ->withoutOverlapping();
         }
     }
 
