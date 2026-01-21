@@ -58,13 +58,13 @@
                                 $cell = $row * 7 + $col;
                             @endphp
 
-                            <td style="height:60px" class="{{ $col === 6 ? 'text-danger' : '' }}">
+                            <td style="height:60px;width:12%" class="{{ $col === 6 ? 'text-danger' : '' }}">
 
                                 @if ($cell >= $startDay && $day <= $totalDays)
-                                    {{-- <span class="{{ $day == $today ? 'badge bg-primary' : '' }}">
+                                    <span class="{{ $day == $today ? 'badge bg-primary' : '' }}">
                                         {{ $day }}
-                                    </span> --}}
-                                    <div style="height: 40px">
+                                    </span>
+                                    <div style="height: 40px" class="p-0">
                                         {{-- {{ $year }} --}}
                                         @include('components.calender.event')
                                     </div>
