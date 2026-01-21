@@ -68,6 +68,12 @@ function currentYMD()
     ];
 }
 
+function startDayofMonth($year,$month){
+    $adDate=bs_to_ad($year."-".$month."-". 1);
+
+    return date('l', strtotime($adDate));
+}
+
 function createTimeline($title, $description, $type)
 {
     Timeline::create([

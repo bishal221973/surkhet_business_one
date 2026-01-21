@@ -10,5 +10,7 @@
     <div class="container-fluid">
        <x-dashboard-cards/>
     </div>
+
+    <x-calender-component/>
 </div>
 @endsection
