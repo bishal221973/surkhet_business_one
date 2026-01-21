@@ -2,7 +2,7 @@
      <div class="col-lg-3 col-6">
          <div class="small-box text-bg-primary">
              <div class="inner">
-                 <h3>150</h3>
+                 <h3>{{$clients}}</h3>
                  <p>Total Clients</p>
              </div>
               <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@
                  </path>
              </svg>
 
-             <a href="#"
+             <a href="{{ route('client.index') }}"
                  class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
                  More info <i class="bi bi-link-45deg"></i>
              </a>
@@ -21,7 +21,7 @@
      <div class="col-lg-3 col-6">
          <div class="small-box text-bg-success">
              <div class="inner">
-                 <h3>53<sup class="fs-5">%</sup></h3>
+                 <h3>{{$payments+$incomes}}<sup class="fs-5">Rs.</sup></h3>
                  <p>Total Income</p>
              </div>
              <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@
      <div class="col-lg-3 col-6">
          <div class="small-box text-bg-warning">
              <div class="inner">
-                 <h3>44</h3>
+                 <h3>{{$expenses}}<sup class="fs-5">Rs.</sup></h3>
                  <p>Total Expenses</p>
              </div>
              <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@
      <div class="col-lg-3 col-6">
          <div class="small-box text-bg-danger">
              <div class="inner">
-                 <h3>65</h3>
+                 <h3>{{$invoices}}<sup class="fs-5">Rs.</sup></h3>
                  <p>Total Dues</p>
              </div>
              <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
